@@ -19,6 +19,8 @@
         android:layout_below="@id/fragment_tag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:dividerHeight="15dp"
+        android:divider="@android:color/transparent"
         android:visibility="gone">
 
     </la.xiaosiwo.laught.views.PullDownList>

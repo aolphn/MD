@@ -6,23 +6,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.ypy.eventbus.EventBus;
 
 import la.xiaosiwo.laught.R;
-import la.xiaosiwo.laught.adapters.TextImtesAdapter;
+import la.xiaosiwo.laught.adapters.ImageImtesAdapter;
 import la.xiaosiwo.laught.events.PrepareTextContentEvent;
-import la.xiaosiwo.laught.manager.TextsManager;
+import la.xiaosiwo.laught.events.UpdateImageContentUIEvent;
 import la.xiaosiwo.laught.events.UpdateTextContentUIEvent;
+import la.xiaosiwo.laught.manager.ImagesManager;
 import la.xiaosiwo.laught.views.PullDownList;
 import la.xiaosiwo.laught.views.PullDownList.OnPDListListener;
 
-public class TextContentFragment extends Fragment {
+public class ImageContentFragment extends Fragment {
 
-	private PullDownList mTextListview;
-	private TextImtesAdapter mAdapter;
+	private PullDownList mImageListview;
+	private ImageImtesAdapter mAdapter;
 	private TextView mNothingView;
 	private String TAG = "TextContentFragment";
 	protected OnPDListListener mPullDownListener = new OnPDListListener() {
@@ -33,25 +33,17 @@ public class TextContentFragment extends Fragment {
 
 		@Override
 		public void onRefresh() {
-			mTextListview.stopRefresh(true);
+			mImageListview.stopRefresh(true);
 			EventBus.getDefault().post(new PrepareTextContentEvent(PrepareTextContentEvent.REFRESH_DATA));
 		}
 	};
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.text_fragment_layout, null);
-		Button tv = (Button) view.findViewById(R.id.fragment_tag);
-		tv.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				EventBus.getDefault().post(new UpdateTextContentUIEvent());
-			}
-		});
+
 		mNothingView = (TextView) view.findViewById(R.id.nothing_text);
-		mTextListview = (PullDownList)view.findViewById(R.id.text_content_list);
-		mTextListview.setOnPDListen(mPullDownListener);
-//		String tag = this.getArguments().getStr\ing("key");
-		tv.setText(getString(R.string.text_laughter));
+		mImageListview = (PullDownList)view.findViewById(R.id.text_content_list);
+		mImageListview.setOnPDListen(mPullDownListener);
 		registerEvent();
 		EventBus.getDefault().post(new UpdateTextContentUIEvent());
 		return view;
@@ -65,16 +57,16 @@ public class TextContentFragment extends Fragment {
 	}
 
 
-	public void onEventMainThread(UpdateTextContentUIEvent event){
+	public void onEventMainThread(UpdateImageContentUIEvent event){
 		Log.i(TAG, "This is event-main-thread");
-		mAdapter = new TextImtesAdapter(getActivity(),TextsManager.getInstance().getmTextItems());
-		mTextListview.setAdapter(mAdapter);
+		mAdapter = new ImageImtesAdapter(getActivity(), ImagesManager.getInstance().getmImageItems());
+		mImageListview.setAdapter(mAdapter);
 		if(mAdapter.getCount() == 0){
 			mNothingView.setVisibility(View.VISIBLE);
-			mTextListview.setVisibility(View.INVISIBLE);
+			mImageListview.setVisibility(View.INVISIBLE);
 		}else{
 			mNothingView.setVisibility(View.INVISIBLE);
-			mTextListview.setVisibility(View.VISIBLE);
+			mImageListview.setVisibility(View.VISIBLE);
 		}
 	}
 

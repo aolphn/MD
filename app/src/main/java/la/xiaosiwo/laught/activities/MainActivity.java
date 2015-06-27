@@ -19,7 +19,7 @@ import com.ypy.eventbus.EventBus;
 
 import la.xiaosiwo.laught.R;
 import la.xiaosiwo.laught.events.PrepareTextContentEvent;
-import la.xiaosiwo.laught.events.TextsManager;
+import la.xiaosiwo.laught.manager.TextsManager;
 import la.xiaosiwo.laught.fragments.TextContentFragment;
 import la.xiaosiwo.laught.views.MaterialMenuDrawable;
 import la.xiaosiwo.laught.views.MaterialMenuIcon;

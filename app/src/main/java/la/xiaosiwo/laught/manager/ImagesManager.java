@@ -1,4 +1,4 @@
-package la.xiaosiwo.laught.events;
+package la.xiaosiwo.laught.manager;
 
 import android.util.Log;
 
@@ -8,90 +8,88 @@ import java.util.ArrayList;
 
 import la.xiaosiwo.laught.R;
 import la.xiaosiwo.laught.appliaction.LaughterApplication;
-import la.xiaosiwo.laught.models.TextLaughterItem;
+import la.xiaosiwo.laught.events.PrepareImageContentEvent;
+import la.xiaosiwo.laught.events.UpdateImageContentUIEvent;
+import la.xiaosiwo.laught.events.UpdateTextContentUIEvent;
+import la.xiaosiwo.laught.models.ImageLaughterItem;
 
 /**
- * Created by 克虎 on 2015/6/24 0024.
+ * Created by OF on 2015/6/24 0024.
  */
-public class TextsManager {
+public class ImagesManager {
     private final static String TAG = "TextsManager";
 
-    private ArrayList<TextLaughterItem> mTextItems;
+    private ArrayList<ImageLaughterItem> mImageItems;
     private static class Loader {
-        static TextsManager INSTANCE = new TextsManager();
+        static ImagesManager INSTANCE = new ImagesManager();
     }
 
-    private TextsManager() {
-        if (mTextItems == null){
-            mTextItems = new ArrayList<TextLaughterItem>(100);
+    private ImagesManager() {
+        if (mImageItems == null){
+            mImageItems = new ArrayList<ImageLaughterItem>(100);
         }
 
     }
-    public static TextsManager getInstance() {
+    public static ImagesManager getInstance() {
         return Loader.INSTANCE;
     }
     public void init(){
         EventBus.getDefault().register(this);
     };
-    public ArrayList<TextLaughterItem> getmTextItems(){
-        if (mTextItems == null){
-            mTextItems = new ArrayList<TextLaughterItem>();
+    public ArrayList<ImageLaughterItem> getmImageItems(){
+        if (mImageItems == null){
+            mImageItems = new ArrayList<ImageLaughterItem>();
         }
-        return mTextItems;
+        return mImageItems;
     }
-    public void onEventBackgroundThread(PrepareTextContentEvent event) {
+    public void onEventBackgroundThread(PrepareImageContentEvent event) {
         Log.i(TAG, "on event -backgroud-thread");
 //        TextsManager.getInstance().init();
         int type = event.getmType();
         switch (type){
-            case PrepareTextContentEvent.INIT_DATA:
+            case PrepareImageContentEvent.INIT_DATA:
                 initData();
                 break;
-            case PrepareTextContentEvent.REFRESH_DATA:
+            case PrepareImageContentEvent.REFRESH_DATA:
                 refreshData();
                 break;
-            case PrepareTextContentEvent.LOAD_MORE_DATA:
+            case PrepareImageContentEvent.LOAD_MORE_DATA:
                 loadMoreData();
                 break;
 
             default:
                 break;
         }
-        switch (type){
-            case  1:
-
-        }
-
     }
 
     private void initData(){
-        mTextItems.clear();
+        mImageItems.clear();
         for(String content: LaughterApplication.getAppContext().getResources().getStringArray(R.array.test_items)){
-            TextLaughterItem item = new TextLaughterItem();
+            ImageLaughterItem item = new ImageLaughterItem();
             item.setmContent(content);
-            mTextItems.add(item);
+            mImageItems.add(item);
         }
     }
     private void refreshData(){
-        mTextItems.clear();
+        mImageItems.clear();
         for(String content: LaughterApplication.getAppContext().getResources().getStringArray(R.array.test_items2)){
-            TextLaughterItem item = new TextLaughterItem();
+            ImageLaughterItem item = new ImageLaughterItem();
             item.setmContent(content);
-            mTextItems.add(item);
+            mImageItems.add(item);
         }
-        EventBus.getDefault().post(new UpdateTextContentUIEvent());
+        EventBus.getDefault().post(new UpdateImageContentUIEvent());
     }
     private void loadMoreData(){
-        mTextItems.clear();
+        mImageItems.clear();
         for(String content: LaughterApplication.getAppContext().getResources().getStringArray(R.array.test_items)){
-            TextLaughterItem item = new TextLaughterItem();
+            ImageLaughterItem item = new ImageLaughterItem();
             item.setmContent(content);
-            mTextItems.add(item);
+            mImageItems.add(item);
         }
         for(String content: LaughterApplication.getAppContext().getResources().getStringArray(R.array.test_items2)){
-            TextLaughterItem item = new TextLaughterItem();
+            ImageLaughterItem item = new ImageLaughterItem();
             item.setmContent(content);
-            mTextItems.add(item);
+            mImageItems.add(item);
         }
         EventBus.getDefault().post(new UpdateTextContentUIEvent());
     }

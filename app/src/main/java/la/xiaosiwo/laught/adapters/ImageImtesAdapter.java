@@ -10,19 +10,19 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import la.xiaosiwo.laught.R;
-import la.xiaosiwo.laught.models.TextLaughterItem;
+import la.xiaosiwo.laught.models.ImageLaughterItem;
 
 /**
  * Created by OF on 2015/6/24 0024.
  */
-public class TextImtesAdapter extends BaseAdapter {
+public class ImageImtesAdapter extends BaseAdapter {
 
     private LayoutInflater mInflater;
-    private ArrayList<TextLaughterItem> mList;
-    public TextImtesAdapter(Context context,ArrayList<TextLaughterItem> list){
+    private ArrayList<ImageLaughterItem> mList;
+    public ImageImtesAdapter(Context context, ArrayList<ImageLaughterItem> list){
         mInflater = LayoutInflater.from(context);
         if(list == null){
-            mList = new ArrayList<TextLaughterItem>();
+            mList = new ArrayList<ImageLaughterItem>();
         }else{
             mList = list;
         }
@@ -32,7 +32,7 @@ public class TextImtesAdapter extends BaseAdapter {
         return mList.size();
     }
     @Override
-    public TextLaughterItem getItem(int position) {
+    public ImageLaughterItem getItem(int position) {
         return mList.get(position);
     }
 
@@ -45,7 +45,7 @@ public class TextImtesAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = null;
         ViewHolder holder = null;
-        TextLaughterItem item = getItem(position);
+        ImageLaughterItem item = getItem(position);
         if(convertView == null){
             view = mInflater.inflate(R.layout.text_item_layout,null);
             holder = new ViewHolder();
