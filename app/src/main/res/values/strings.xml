@@ -2,6 +2,7 @@
     <string name="app_name">Laught</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="image_can_not_display">无法显示图片</string>
     <string name="android_studio">This app is created by android studio\</string>
     <string name="action_settings">Settings</string>
     <string name="nothing">There is nothing else</string>
@@ -131,4 +132,5 @@
 女朋友回答有。
 我心里想女朋友真给我面子。没有在同学面前暴露出我没有车。</item>
     </string-array>
+    <string name="title_activity_image_priview">ImagePriviewActivity</string>
 </resources>

@@ -4,6 +4,11 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.WeakHashMap;
@@ -24,13 +29,14 @@ public class LaughterApplication extends Application {
     private void init(){
         mContext = getApplicationContext();
         mActivities = new WeakHashMap<>();
+        initImageLoader();
     }
 
     public void addOneActivity(Activity aty){
         if (mActivities == null){
             mActivities = new WeakHashMap<>();
         }
-        mActivities.put(aty.getLocalClassName(),aty);
+        mActivities.put(aty.getLocalClassName(), aty);
     }
     public void removeOneActivity(Activity aty){
         if (mActivities != null){
@@ -51,5 +57,18 @@ public class LaughterApplication extends Application {
      */
     public static Context getAppContext(){
         return mContext;
+    }
+
+    private void initImageLoader() {
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+                getApplicationContext())
+                .threadPriority(Thread.NORM_PRIORITY - 2)
+                .denyCacheImageMultipleSizesInMemory()
+                .discCacheFileNameGenerator(new Md5FileNameGenerator())
+                .tasksProcessingOrder(QueueProcessingType.LIFO)
+                .writeDebugLogs() // Remove for release app
+                .build();
+        ImageLoader.getInstance().init(config);
     }
 }

@@ -3,6 +3,9 @@ package la.xiaosiwo.laught.activities;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import la.xiaosiwo.laught.appliaction.LaughterApplication;
 import la.xiaosiwo.laught.utils.DateUtil;
@@ -13,6 +16,7 @@ import la.xiaosiwo.laught.utils.DateUtil;
 public abstract  class BaseActivity extends Activity {
 
 
+    protected ImageLoader imageLoader = ImageLoader.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,5 +50,9 @@ public abstract  class BaseActivity extends Activity {
         ((LaughterApplication)getApplication()).removeOneActivity(this);
         super.onDestroy();
         Log.i(this.getLocalClassName(), ":onDestroy at:"+ DateUtil.getCurDateStr());
+    }
+
+    protected void toast(String content){
+        Toast.makeText(this,content,Toast.LENGTH_SHORT).show();
     }
 }

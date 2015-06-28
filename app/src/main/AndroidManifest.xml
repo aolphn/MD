@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="la.xiaosiwo.laught"
-
     android:versionCode="1"
-    android:versionName="1.0.0.150622">
-
-    <uses-sdk android:minSdkVersion="14"
-        android:targetSdkVersion="19">
-
+    android:versionName="1.0.0.150622" >
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" >
     </uses-sdk>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
         android:name=".appliaction.LaughterApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:theme="@style/AppBaseTheme"
         android:label="@string/app_name"
-
-         >
+        android:theme="@style/AppBaseTheme" >
         <activity
             android:name=".activities.MainActivity"
-
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.ImagePriviewActivity"
+            android:label="@string/title_activity_image_priview"
+             >
+
         </activity>
     </application>
 

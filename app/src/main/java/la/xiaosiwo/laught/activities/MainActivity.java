@@ -19,8 +19,10 @@ import com.ypy.eventbus.EventBus;
 
 import la.xiaosiwo.laught.R;
 import la.xiaosiwo.laught.events.PrepareTextContentEvent;
-import la.xiaosiwo.laught.manager.TextsManager;
+import la.xiaosiwo.laught.fragments.ImageContentFragment;
 import la.xiaosiwo.laught.fragments.TextContentFragment;
+import la.xiaosiwo.laught.manager.ImagesManager;
+import la.xiaosiwo.laught.manager.TextsManager;
 import la.xiaosiwo.laught.views.MaterialMenuDrawable;
 import la.xiaosiwo.laught.views.MaterialMenuIcon;
 
@@ -50,6 +52,7 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
 //        EventBus.getDefault().register(this);
         TextsManager.getInstance().init();
+        ImagesManager.getInstance().init();
         setContentView(R.layout.activity_main);
 
         init( savedInstanceState);
@@ -73,10 +76,8 @@ public class MainActivity extends FragmentActivity {
         // 设置ActionBar可见，并且切换菜单和内容视图
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
-
         mMaterialMenuIcon = new MaterialMenuIcon(this, Color.WHITE, MaterialMenuDrawable.Stroke.THIN);
         mDrawerLayout.setDrawerListener(new DrawerLayoutStateListener());
-
         if (savedInstanceState == null) {
             selectItem(0);
         }
@@ -148,29 +149,37 @@ public class MainActivity extends FragmentActivity {
      * @param position\
      */
     private void selectItem(int position) {
-        Fragment fragment = new TextContentFragment();
+        Fragment textFragment = null;
+        Fragment imageFragment = null;
         Bundle args = new Bundle();
         switch (position) {
             case 0:
-                args.putString("key", mMenuTitles[position]);
+                textFragment = new TextContentFragment();
                 EventBus.getDefault().post(new PrepareTextContentEvent(PrepareTextContentEvent.INIT_DATA));
                 break;
             case 1:
-                args.putString("key", mMenuTitles[position]);
+                imageFragment = new ImageContentFragment();
+//                EventBus.getDefault().post(new PrepareImageContentEvent(PrepareImageContentEvent.INIT_DATA));
                 break;
             case 2:
                 args.putString("key", mMenuTitles[position]);
-                break;
+                return;
             case 3:
                 args.putString("key", mMenuTitles[position]);
                 break;
             default:
                 break;
         }
-        fragment.setArguments(args); // FragmentActivity将点击的菜单列表标题传递给Fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.content_frame, fragment).commit();
+        if (position == 0){
+            textFragment.setArguments(args);
+            // FragmentActivity将点击的菜单列表标题传递给Fragment
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, textFragment).commit();
+        }else if (position == 1){
+            imageFragment.setArguments(args);
+            fragmentManager.beginTransaction().replace(R.id.content_frame,imageFragment).commit();
+        }
 
         // 更新选择后的item和title，然后关闭菜单
         mMenuListView.setItemChecked(position, true);
@@ -247,7 +256,8 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        EventBus.getDefault().unregister(this);
+        TextsManager.getInstance().destroy();
+        ImagesManager.getInstance().destroy();
     }
 
 

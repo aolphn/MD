@@ -3,6 +3,7 @@ package la.xiaosiwo.laught.manager;
 import android.util.Log;
 
 import com.ypy.eventbus.EventBus;
+import com.ypy.eventbus.EventBusException;
 
 import java.util.ArrayList;
 
@@ -13,7 +14,8 @@ import la.xiaosiwo.laught.events.UpdateTextContentUIEvent;
 import la.xiaosiwo.laught.models.TextLaughterItem;
 
 /**
- * Created by 克虎 on 2015/6/24 0024.
+ * Created by OF on 2015/6/24 0024.
+ * text manager
  */
 public class TextsManager {
     private final static String TAG = "TextsManager";
@@ -33,7 +35,11 @@ public class TextsManager {
         return Loader.INSTANCE;
     }
     public void init(){
-        EventBus.getDefault().register(this);
+        try {
+            EventBus.getDefault().register(this);
+        }catch (EventBusException e){
+            e.printStackTrace();
+        }
     };
     public ArrayList<TextLaughterItem> getmTextItems(){
         if (mTextItems == null){
