@@ -76,9 +76,9 @@ public class ImagesManager {
         int count = 0;
         while (cursor.moveToNext()){
             String uri = cursor.getString(0);
-            if(!uri.endsWith(".gif")){
-                continue;
-            }
+//            if(!uri.endsWith(".gif")){
+//                continue;
+//            }
             ImageLaughterItem item = new ImageLaughterItem();
             Log.i(TAG, "we get image uri:" + uri);
             item.setmContent(uri);

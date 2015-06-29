@@ -6,8 +6,11 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 
+import com.ant.liao.GifView;
+
 import la.xiaosiwo.laught.R;
-import la.xiaosiwo.laught.views.GifView;
+import la.xiaosiwo.laught.utils.ImageUtil;
+import la.xiaosiwo.laught.utils.SystemUtil;
 
 /**
  * author:OF,time:2015-06-28 21:51:12.
@@ -35,27 +38,31 @@ public class ImagePriviewActivity extends BaseActivity {
             toast(getString(R.string.image_can_not_display));
             return;
         }
+        String absolutePath = null;
+        if(mUri.startsWith("file://")){
+            absolutePath = mUri.substring(7);
+        }else if(mUri.startsWith("/")){
+            absolutePath = mUri;
+        }else{
+            toast(getString(R.string.image_can_not_display));
+            return;
+        }
         if(mUri.endsWith(".gif")){
             mGifView.setVisibility(View.VISIBLE);
             mImageView.setVisibility(View.GONE);
-            String absolutePath = null;
-            if(mUri.startsWith("file://")){
-                absolutePath = mUri.substring(7);
-            }else if(mUri.startsWith("/")){
-                absolutePath = mUri;
-            }else{
-                toast(getString(R.string.image_can_not_display));
-                return;
-            }
-            mGifView.setGifImageType(GifView.GifImageType.COVER);
-            mGifView.setShowDimension(300,300);
-            mGifView.setGifImage(R.drawable.default_img);
-//            mGifView.setGifImage(ImageUtil.getInputStreamFromLocalFile(absolutePath));
+            mGifView.setGifImage(R.drawable.test_gif);
+            mGifView.setGifImage(ImageUtil.getInputStreamFromLocalFile(absolutePath));
+            mGifView.setShowDimension(SystemUtil.screenWidth, SystemUtil.screenHeight/2);
         }else{
             mGifView.setVisibility(View.GONE);
             mImageView.setVisibility(View.VISIBLE);
+            mImageView.setImageBitmap(ImageUtil.getBitmapFromLocal(absolutePath));
         }
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }

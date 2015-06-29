@@ -134,6 +134,24 @@ public class ImageUtil {
 	}
 
 	/**
+	 * author:OF,time:2015-06-29 20:49:52.
+	 * @param filePath
+	 * @return
+	 */
+	public static Bitmap getBitmapFromLocal(String filePath){
+		InputStream is = getInputStreamFromLocalFile(filePath);
+		Bitmap bitmap = null;
+		if(is != null){
+			bitmap = BitmapFactory.decodeStream(is);
+			try {
+				is.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return bitmap;
+	}
+	/**
 	 * 
 	 * @param imageUrl
 	 * @return
