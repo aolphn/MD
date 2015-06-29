@@ -13,10 +13,12 @@
         android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#111"
+        android:background="@drawable/white_frame_black_content_rect"
         android:choiceMode="singleChoice"
+        android:listSelector="@drawable/white_frame_selector_radio"
+        android:padding="5dp"
         android:divider="@android:color/transparent"
-        android:dividerHeight="0dp" />
+        android:dividerHeight="5dp" />
 
     <RelativeLayout
         android:id="@+id/right_drawer"

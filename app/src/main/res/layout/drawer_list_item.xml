@@ -15,13 +15,13 @@
 -->
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/text1"
+    android:id="@+id/menu_text"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/activatedBackgroundIndicator"
+    android:background="@drawable/white_frame_selector_radio"
     android:gravity="right|center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeightSmall"
     android:paddingLeft="32dp"
     android:paddingRight="46dp"
     android:textAppearance="?android:attr/textAppearanceListItemSmall"
-    android:textColor="#fff" />
+    android:textColor="@drawable/white_char_black_groud_selector" />

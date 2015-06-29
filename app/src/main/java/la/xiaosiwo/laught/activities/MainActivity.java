@@ -11,13 +11,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.ypy.eventbus.EventBus;
 
 import la.xiaosiwo.laught.R;
+import la.xiaosiwo.laught.adapters.MenusAdapter;
 import la.xiaosiwo.laught.events.PrepareTextContentEvent;
 import la.xiaosiwo.laught.fragments.ImageContentFragment;
 import la.xiaosiwo.laught.fragments.TextContentFragment;
@@ -47,6 +47,7 @@ public class MainActivity extends FragmentActivity {
     private boolean isDirection_right = false;
     private View showView;
     private String TAG = "MainActivity";
+    private MenusAdapter mMenuAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +67,21 @@ public class MainActivity extends FragmentActivity {
 
         // 初始化菜单列表
         mMenuTitles = getResources().getStringArray(R.array.menu_array);
-        mMenuListView.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, mMenuTitles));
+        mMenuAdapter = new MenusAdapter(this,mMenuTitles);
+        mMenuListView.setAdapter(mMenuAdapter);
         mMenuListView.setOnItemClickListener(new DrawerItemClickListener());
+//        mMenuListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                mMenuAdapter.setmSelectedPosition(position);
+//                mMenuAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
         // 设置抽屉打开时，主要内容区被自定义阴影覆盖\
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
@@ -182,7 +195,10 @@ public class MainActivity extends FragmentActivity {
         }
 
         // 更新选择后的item和title，然后关闭菜单
-        mMenuListView.setItemChecked(position, true);
+//        mMenuListView.setItemChecked(position, true);
+//        mMenuListView.setSelection(position);
+        mMenuAdapter.setmSelectedPosition(position);
+        mMenuAdapter.notifyDataSetChanged();
         setTitle(mMenuTitles[position]);
         mDrawerLayout.closeDrawer(mMenuListView);
     }
