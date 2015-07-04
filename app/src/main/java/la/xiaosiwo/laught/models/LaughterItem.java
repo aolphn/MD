@@ -1,9 +1,11 @@
 package la.xiaosiwo.laught.models;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * Created by 克虎 on 2015/6/24 0024.
  */
-public class LaughterItem {
+public class LaughterItem extends DataSupport{
     public static final String TYPE_OF_TEXT = "text";
     public static final String TYPE_OF_IMAGE = "image";
     public static final String TYPE_OF_VIDEO = "video";
