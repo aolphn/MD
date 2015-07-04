@@ -34,18 +34,6 @@ public class MainActivityCase extends ActivityInstrumentationTestCase2<MainActiv
 
     public void testMainActivity() throws Exception {
         solo.clickOnButton("赞成");
-
         solo.clickOnActionBarItem(R.id.action_personal);
-
-        solo.clickOnView(solo.getText("文字"));
-        solo.clickOnButton("赞成");
-        solo.clickOnButton("赞成");
-        solo.clickOnButton("赞成");
-        solo.clickOnButton("赞成");
-        solo.clickOnButton("赞成");
-        solo.clickOnButton("赞成");
-        solo.clickOnButton("赞成");
-        solo.clickOnButton("赞成");
-
     }
 }

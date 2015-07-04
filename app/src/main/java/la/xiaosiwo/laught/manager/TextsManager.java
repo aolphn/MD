@@ -5,7 +5,11 @@ import android.util.Log;
 import com.ypy.eventbus.EventBus;
 import com.ypy.eventbus.EventBusException;
 
+import org.litepal.crud.DataSupport;
+
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import la.xiaosiwo.laught.R;
 import la.xiaosiwo.laught.appliaction.LaughterApplication;
@@ -74,11 +78,24 @@ public class TextsManager {
 
     private void initData(){
         mTextItems.clear();
-        for(String content: LaughterApplication.getAppContext().getResources().getStringArray(R.array.test_items)){
-            TextLaughterItem item = new TextLaughterItem();
-            item.setmContent(content);
-            mTextItems.add(item);
+//        for(String content: LaughterApplication.getAppContext().getResources().getStringArray(R.array.test_items)){
+//            TextLaughterItem item = new TextLaughterItem();
+//            String uId = System.currentTimeMillis()+SystemClock.currentThreadTimeMillis()+"";
+//            item.setmContent(content);
+//            item.setuId(uId);
+//            item.save();
+//            mTextItems.add(item);
+//        }
+        List<TextLaughterItem> items = DataSupport.findAll(TextLaughterItem.class);
+        if (items == null){
+            Log.w(TAG,"there are nothing data");
+            return;
         }
+        Iterator<TextLaughterItem> itemIterator = items.iterator();
+        while (itemIterator.hasNext()){
+            mTextItems.add(itemIterator.next());
+        }
+        EventBus.getDefault().post(new UpdateTextContentUIEvent());
     }
     private void refreshData(){
         mTextItems.clear();

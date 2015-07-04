@@ -35,4 +35,14 @@ public class TextLaughterItem extends LaughterItem {
     private String mContent;
     private String mSrc;
     private String mUrl;
+
+    public String getuId() {
+        return uId;
+    }
+
+    public void setuId(String uId) {
+        this.uId = uId;
+    }
+
+    private String uId;
 }

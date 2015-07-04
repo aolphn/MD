@@ -1,7 +1,6 @@
 package la.xiaosiwo.laught.appliaction;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -9,14 +8,20 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
+import org.litepal.LitePalApplication;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.WeakHashMap;
 
+import la.xiaosiwo.laught.manager.DatabaseManager;
+import la.xiaosiwo.laught.manager.ImagesManager;
+import la.xiaosiwo.laught.manager.TextsManager;
+
 /**
  * Created by Administrator on 2015/6/26.
  */
-public class LaughterApplication extends Application {
+public class LaughterApplication extends LitePalApplication {
 
     private static Context mContext;
     private WeakHashMap<String,Activity> mActivities;
@@ -30,6 +35,15 @@ public class LaughterApplication extends Application {
         mContext = getApplicationContext();
         mActivities = new WeakHashMap<>();
         initImageLoader();
+        LitePalApplication.initialize(this);
+        try{
+            DatabaseManager.getInstance().init();
+            TextsManager.getInstance().init();
+            ImagesManager.getInstance().init();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public void addOneActivity(Activity aty){
@@ -70,5 +84,14 @@ public class LaughterApplication extends Application {
                 .writeDebugLogs() // Remove for release app
                 .build();
         ImageLoader.getInstance().init(config);
+
+    }
+
+    @Override
+    public void onTerminate() {
+        TextsManager.getInstance().destroy();
+        ImagesManager.getInstance().destroy();
+        DatabaseManager.getInstance().destroy();
+        super.onTerminate();
     }
 }

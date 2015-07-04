@@ -18,11 +18,10 @@ import com.ypy.eventbus.EventBus;
 
 import la.xiaosiwo.laught.R;
 import la.xiaosiwo.laught.adapters.MenusAdapter;
+import la.xiaosiwo.laught.events.PrepareImageContentEvent;
 import la.xiaosiwo.laught.events.PrepareTextContentEvent;
 import la.xiaosiwo.laught.fragments.ImageContentFragment;
 import la.xiaosiwo.laught.fragments.TextContentFragment;
-import la.xiaosiwo.laught.manager.ImagesManager;
-import la.xiaosiwo.laught.manager.TextsManager;
 import la.xiaosiwo.laught.views.MaterialMenuDrawable;
 import la.xiaosiwo.laught.views.MaterialMenuIcon;
 
@@ -48,41 +47,29 @@ public class MainActivity extends FragmentActivity {
     private View showView;
     private String TAG = "MainActivity";
     private MenusAdapter mMenuAdapter;
+    Fragment mTextFragment = null;
+    Fragment mImageFragment = null;
+    FragmentManager mFragmentManager;
+    private int mCurrentFragment = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        EventBus.getDefault().register(this);
-        TextsManager.getInstance().init();
-        ImagesManager.getInstance().init();
         setContentView(R.layout.activity_main);
-
         init( savedInstanceState);
     }
+
 
     private void init(Bundle savedInstanceState){
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mMenuListView = (ListView) findViewById(R.id.left_drawer);
         right_drawer = (RelativeLayout) findViewById(R.id.right_drawer);
         this.showView = mMenuListView;
-
+        mFragmentManager = getSupportFragmentManager();
         // 初始化菜单列表
         mMenuTitles = getResources().getStringArray(R.array.menu_array);
         mMenuAdapter = new MenusAdapter(this,mMenuTitles);
         mMenuListView.setAdapter(mMenuAdapter);
         mMenuListView.setOnItemClickListener(new DrawerItemClickListener());
-//        mMenuListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                mMenuAdapter.setmSelectedPosition(position);
-//                mMenuAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-
         // 设置抽屉打开时，主要内容区被自定义阴影覆盖\
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
                 GravityCompat.START);
@@ -105,6 +92,11 @@ public class MainActivity extends FragmentActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position,
                                 long id) {
             selectItem(position);
+            if (position == 0){
+                EventBus.getDefault().post(new PrepareTextContentEvent(PrepareTextContentEvent.INIT_DATA));
+            }else if(position ==1){
+                EventBus.getDefault().post(new PrepareImageContentEvent(PrepareImageContentEvent.INIT_DATA));
+            }
         }
     }
 
@@ -162,16 +154,21 @@ public class MainActivity extends FragmentActivity {
      * @param position\
      */
     private void selectItem(int position) {
-        Fragment textFragment = null;
-        Fragment imageFragment = null;
+        if(mCurrentFragment == position){
+            return;
+        }
+        mCurrentFragment = position;
         Bundle args = new Bundle();
         switch (position) {
             case 0:
-                textFragment = new TextContentFragment();
-                EventBus.getDefault().post(new PrepareTextContentEvent(PrepareTextContentEvent.INIT_DATA));
+                if (mTextFragment == null){
+                    mTextFragment = new TextContentFragment();
+                }
                 break;
             case 1:
-                imageFragment = new ImageContentFragment();
+                if (mImageFragment == null){
+                    mImageFragment = new ImageContentFragment();
+                }
 //                EventBus.getDefault().post(new PrepareImageContentEvent(PrepareImageContentEvent.INIT_DATA));
                 break;
             case 2:
@@ -183,15 +180,15 @@ public class MainActivity extends FragmentActivity {
             default:
                 break;
         }
-        FragmentManager fragmentManager = getSupportFragmentManager();
+
         if (position == 0){
-            textFragment.setArguments(args);
+            mTextFragment.setArguments(args);
             // FragmentActivity将点击的菜单列表标题传递给Fragment
-            fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame, textFragment).commit();
+            mFragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, mTextFragment).commit();
         }else if (position == 1){
-            imageFragment.setArguments(args);
-            fragmentManager.beginTransaction().replace(R.id.content_frame,imageFragment).commit();
+            mImageFragment.setArguments(args);
+            mFragmentManager.beginTransaction().replace(R.id.content_frame, mImageFragment).commit();
         }
 
         // 更新选择后的item和title，然后关闭菜单
@@ -225,7 +222,7 @@ public class MainActivity extends FragmentActivity {
                     }
                 }
                 break;
-            case R.id.action_personal:
+            case R.id.menu_image:
                 if (!isDirection_right) {// 右边栏关闭时，打开
                     if (showView == mMenuListView) {
                         mDrawerLayout.closeDrawer(mMenuListView);
@@ -271,9 +268,8 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     protected void onDestroy() {
+
         super.onDestroy();
-        TextsManager.getInstance().destroy();
-        ImagesManager.getInstance().destroy();
     }
 
 

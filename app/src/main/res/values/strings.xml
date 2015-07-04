@@ -4,7 +4,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="image_can_not_display">无法显示图片</string>
     <string name="android_studio">This app is created by android studio\</string>
-    <string name="action_settings">Settings</string>
+    <string name="shot_picture">拍照片</string>
+    <string name="shot_video">拍视频</string>
     <string name="nothing">There is nothing else</string>
     <string name="text_laughter">文字笑话集锦</string>
     <string name="pull_down_for_refresh">下拉刷新</string>

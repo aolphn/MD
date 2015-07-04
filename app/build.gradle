@@ -26,5 +26,7 @@ dependencies {
     compile files('src/main/libs/universal-image-loader-1.9.1-with-sources.jar')
     compile files('src/main/libs/GifView.jar')
     compile files('src/main/libs/butterknife-7.0.0.jar')
-    compile files('E:/Laugter/.idea/libraries/robotium-solo-5.2.1.jar')
+    compile files('src/main/libs/robotium-solo-5.2.1.jar')
+    compile files('src/main/libs/android-junit-report-1.5.8.jar')
+    compile files('src/main/libs/litepal-1.2.1.jar')
 }
