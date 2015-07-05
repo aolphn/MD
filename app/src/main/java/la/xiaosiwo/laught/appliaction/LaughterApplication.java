@@ -27,7 +27,7 @@ import la.xiaosiwo.laught.manager.TextsManager;
 /**
  * Created by Administrator on 2015/6/26.
  */
-public class LaughterApplication extends LitePalApplication {
+public class LaughterApplication extends Application {
 
     private static Context mContext;
     private WeakHashMap<String,Activity> mActivities;
