@@ -23,7 +23,6 @@ import android.content.pm.Signature;
 import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
-
 import java.security.MessageDigest;
 
 

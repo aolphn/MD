@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
+import android.util.Log;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -12,7 +13,6 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.yixia.camera.demo.service.AssertService;
 import com.yixia.weibo.sdk.VCamera;
-import com.yixia.weibo.sdk.util.DeviceUtils;
 
 import org.litepal.LitePalApplication;
 
@@ -21,9 +21,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.WeakHashMap;
 
+import la.xiaosiwo.laught.common.Constant;
 import la.xiaosiwo.laught.manager.DatabaseManager;
 import la.xiaosiwo.laught.manager.ImagesManager;
 import la.xiaosiwo.laught.manager.TextsManager;
+import la.xiaosiwo.laught.utils.FileUtil;
 
 /**
  * Created by Administrator on 2015/6/26.
@@ -31,6 +33,7 @@ import la.xiaosiwo.laught.manager.TextsManager;
 public class LaughterApplication extends Application {
 
     private static Context mContext;
+    private String TAG = "LaughterApplication";
     private WeakHashMap<String,Activity> mActivities;
     @Override
     public void onCreate() {
@@ -41,6 +44,7 @@ public class LaughterApplication extends Application {
     private void init(){
         mContext = getApplicationContext();
         mActivities = new WeakHashMap<>();
+        Constant.SDCARD_ROOT_PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
         initImageLoader();
         LitePalApplication.initialize(this);
         try{
@@ -50,26 +54,26 @@ public class LaughterApplication extends Application {
         }catch (Exception e){
             e.printStackTrace();
         }
-// 设置拍摄视频缓存路径
-        File dcim = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
-        if (DeviceUtils.isZte()) {
-            if (dcim.exists()) {
-                VCamera.setVideoCachePath(dcim + "/Camera/VCameraDemo/");
-            } else {
-                VCamera.setVideoCachePath(dcim.getPath().replace("/sdcard/", "/sdcard-ext/") + "/Camera/VCameraDemo/");
-            }
-        } else {
-            VCamera.setVideoCachePath(dcim + "/Camera/VCameraDemo/");
-        }
+        initVCamera();
+    }
+
+    /**
+     * @author:OF,time:2015-07-06 23:41:16
+     */
+    private void initVCamera(){
+        // set cache folder
+        //step-1 create folders
+        FileUtil.createDir(new File(Constant.APP_ROOT_PATH));
+        FileUtil.createDir(new File(Constant.CACHE_PATH));
+        VCamera.setVideoCachePath(Constant.CACHE_PATH + "/");
+        Log.i(TAG,"create laughter folder");
         // 开启log输出,ffmpeg输出到logcat
-        VCamera.setDebugMode(true);
+        VCamera.setDebugMode(false);
         // 初始化拍摄SDK，必须
         VCamera.initialize(this);
-
         //解压assert里面的文件
         startService(new Intent(this, AssertService.class));
     }
-
     public void addOneActivity(Activity aty){
         if (mActivities == null){
             mActivities = new WeakHashMap<>();
