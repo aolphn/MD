@@ -1,6 +1,8 @@
 package la.xiaosiwo.laught.activities;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +21,7 @@ import com.ypy.eventbus.EventBus;
 
 import la.xiaosiwo.laught.R;
 import la.xiaosiwo.laught.adapters.MenusAdapter;
+import la.xiaosiwo.laught.common.Constant;
 import la.xiaosiwo.laught.events.PrepareImageContentEvent;
 import la.xiaosiwo.laught.events.PrepareTextContentEvent;
 import la.xiaosiwo.laught.fragments.ImageContentFragment;
@@ -51,6 +54,7 @@ public class MainActivity extends FragmentActivity {
     Fragment mTextFragment = null;
     Fragment mImageFragment = null;
     FragmentManager mFragmentManager;
+    protected SharedPreferences mShared;
     private int mCurrentFragment = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,7 @@ public class MainActivity extends FragmentActivity {
 
 
     private void init(Bundle savedInstanceState){
+        mShared = getSharedPreferences(Constant.SHARED_PROFILE, Activity.MODE_PRIVATE);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mMenuListView = (ListView) findViewById(R.id.left_drawer);
         right_drawer = (RelativeLayout) findViewById(R.id.right_drawer);
@@ -236,6 +241,15 @@ public class MainActivity extends FragmentActivity {
                     mDrawerLayout.closeDrawer(right_drawer);
                 }
                 break;
+            case R.id.menu_pattern_lock:
+                if (!isDirection_right) {// 右边栏关闭时，打开
+                    if (showView == mMenuListView) {
+                        mDrawerLayout.closeDrawer(mMenuListView);
+                    }
+                    startActivity(new Intent(MainActivity.this, SetPatternPwdActivity.class));
+                } else {// 右边栏打开时，关闭
+                    mDrawerLayout.closeDrawer(right_drawer);
+                }
             default:
                 break;
         }
@@ -271,10 +285,39 @@ public class MainActivity extends FragmentActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if(needUnlock()){
+            //需要验证手势密码
+            Intent intent = new Intent(this,UnlockActivity.class);
+            intent.putExtra(Constant.UNLOCK_REASON,Constant.UNLOCK_FOR_CHECK_PWD);
+            startActivity(intent);
+        }
+    }
+
+    @Override
     protected void onDestroy() {
 
         super.onDestroy();
     }
 
 
+    /**
+     * 检查手势密码，看是否需要输入手势密码进行验证。
+     * @return
+     */
+    private boolean needUnlock(){
+        String pwd = mShared.getString(Constant.GESTURE_PWD,Constant.GESTURE_PWD_DEFAULT);
+        long lastTime = mShared.getLong(Constant.UNLOCK_TIME,0);
+        if(Constant.GESTURE_PWD_DEFAULT.equals(pwd)){
+            return false;
+        }else{
+            //距离上次设置密码或者解锁时间小于5分钟则不需要解锁。
+            if(Math.abs(System.currentTimeMillis()-lastTime) < 1000*60*5){
+                return  false;
+            }else{
+                return true;
+            }
+        }
+    }
 }

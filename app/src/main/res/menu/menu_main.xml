@@ -10,5 +10,10 @@
         android:icon="@drawable/white_frame_black_content_rect"
         android:orderInCategory="2"
         android:title="@string/shot_picture"/>
+    <item
+        android:id="@+id/menu_pattern_lock"
+        android:icon="@drawable/white_frame_black_content_rect"
+        android:orderInCategory="3"
+        android:title="@string/pattern_lock"/>
 
 </menu>

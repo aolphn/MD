@@ -6,6 +6,9 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import la.xiaosiwo.laught.views.Point;
+
 public class StringUtil {
 	/**
 	 * 
@@ -263,5 +266,49 @@ public class StringUtil {
 			}
 		}
 		return list;
+	}
+
+	/**
+	 * 用于判断两次绘制的手势密码是否一致
+	 * @param l1
+	 * @param l2
+	 * @return
+	 */
+	public static boolean isSamePattern(ArrayList<Point> l1,ArrayList<Point> l2){
+		if(l1 == null || l2 == null){
+			return  false;
+		}
+		if(l1.size() != l2.size()){
+			return  false;
+		}
+		for(int i =0;i < l2.size();i++){
+			Point p1 = l1.get(i);
+			Point p2 = l2.get(i);
+			if(p1.getValue().equals(p2.getValue())){
+				continue;
+			}else{
+				return  false;
+			}
+
+		}
+		return true;
+	}
+
+	/**
+	 * 根据手势获取当前的密码
+	 * @param list
+	 * @return
+	 */
+	public static String getGestureFromPoints(ArrayList<Point> list){
+		if(list == null){
+			return null;
+		}else{
+			StringBuilder sb = new StringBuilder();
+			for(Point p : list){
+				sb.append(p.getValue());
+			}
+			return MD5Util.MD5Encode(sb.toString());
+		}
+
 	}
 }

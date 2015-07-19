@@ -2,13 +2,12 @@ package la.xiaosiwo.laught.adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -24,12 +23,12 @@ import la.xiaosiwo.laught.models.ImageLaughterItem;
 /**
  * Created by OF on 2015/6/24 0024.
  */
-public class ImageImtesAdapter extends BaseAdapter {
+public class ImageImtesAdapter extends RecyclerView.Adapter {
 
     private String TAG = "ImageImtesAdapter";
     private LayoutInflater mInflater;
     private ArrayList<ImageLaughterItem> mList;
-    private final ListView mListview;
+    private final RecyclerView recyclerView;
     private ImageLoader mImageLoader;
     private DisplayImageOptions options;
 
@@ -38,10 +37,10 @@ public class ImageImtesAdapter extends BaseAdapter {
     }
 
     private View.OnClickListener mImageClickListener;
-    public ImageImtesAdapter(Context context, ArrayList<ImageLaughterItem> list, ImageLoader loder, ListView lv){
+    public ImageImtesAdapter(Context context, ArrayList<ImageLaughterItem> list, ImageLoader loder, RecyclerView lv){
         mInflater = LayoutInflater.from(context);
         if(list == null){
-            mList = new ArrayList<ImageLaughterItem>();
+            mList = new ArrayList<>();
         }else{
             mList = list;
         }
@@ -53,69 +52,79 @@ public class ImageImtesAdapter extends BaseAdapter {
                 .cacheOnDisc(true)
                 .considerExifParams(true)
                 .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
-
                 .build();
-        mListview = lv;
+        recyclerView = lv;
     }
-    @Override
-    public int getCount() {
-        return mList.size();
-    }
-    @Override
-    public ImageLaughterItem getItem(int position) {
-        return mList.get(position);
-    }
+
 
     @Override
     public long getItemId(int position) {
         return position;
     }
 
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        View view = null;
-        ViewHolder holder = null;
-        final ImageLaughterItem item = getItem(position);
-        if(convertView == null){
-            view = mInflater.inflate(R.layout.image_item_layout,null);
-            holder = new ViewHolder();
-            holder.content = (TextView)view.findViewById(R.id.text_description);
-            holder.image = (ImageView)view.findViewById(R.id.image_content);
-            view.setTag(holder);
-        }else{
-            view = convertView;
-            holder = (ViewHolder)view.getTag();
-        }
-        final ImageView leftImage = holder.image;
 
-        leftImage.setImageResource(R.drawable.default_img);
-        Log.i(TAG,"position:"+position);
-        holder.image.setTag("file://" + item.getmUrl());
-        holder.content.setText("file://" + item.getmUrl());
+
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        ViewHolder holder = (ViewHolder)viewHolder;
+        final ImageLaughterItem item = mList.get(i);
+        final ImageView leftImage = holder.bitmap;
+        holder.bitmap.setImageResource(R.drawable.default_img);
+        Log.i(TAG, "position:" + i);
+        holder.bitmap.setTag("file://" + item.getmUrl());
+        holder.textView.setText("file://" + item.getmUrl());
         if (mImageClickListener != null){
-            holder.image.setOnClickListener(mImageClickListener);
+            holder.bitmap.setOnClickListener(mImageClickListener);
         }
-//        mImageLoader.displayImage("file://"+item.getmUrl(),new ImageViewAware(leftImage));
         mImageLoader.loadImage("file://" + item.getmUrl(), null, options, new SimpleImageLoadingListener() {
             @Override
             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                 Log.i(TAG, "image uri:" + imageUri + ",holder tag:" + leftImage.getTag());
-                if (imageUri.equals( leftImage.getTag())) {
-                   ImageView img  = ((ImageView) mListview.findViewWithTag(imageUri));
-                    if (img !=null){
+                if (imageUri.equals(leftImage.getTag())) {
+                    ImageView img = ((ImageView) recyclerView.findViewWithTag(imageUri));
+                    if (img != null) {
                         img.setImageBitmap(loadedImage);
+
                         img.setTag("");
-                        img.setTag(R.drawable.default_img,item.getmUrl());
+                        img.setTag(R.drawable.default_img, item.getmUrl());
                     }
-//                    leftImage.setImageBitmap(loadedImage);
                 }
             }
         });
-//        holder.image.setImageResource(R.drawable.default_img);
-        return view;
     }
-    class ViewHolder{
-        TextView content;
-        ImageView image;
+
+    @Override
+    public void onViewRecycled(RecyclerView.ViewHolder holder) {
+        super.onViewRecycled(holder);
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(RecyclerView.ViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+    }
+
+    @Override
+    public int getItemCount() {
+        return mList.size();
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.image_item_layout,viewGroup,false);
+        ViewHolder holder = new ViewHolder(view);
+        holder.textView = (TextView)view.findViewById(R.id.text_description);
+        holder.bitmap = (ImageView) view.findViewById(R.id.image_content);
+        holder.setIsRecyclable(false);
+        return holder;
+    }
+
+
+    public  static class ViewHolder extends RecyclerView.ViewHolder{
+        TextView textView;
+        ImageView bitmap;
+        public ViewHolder(View view){
+         super(view);
+        }
     }
 }

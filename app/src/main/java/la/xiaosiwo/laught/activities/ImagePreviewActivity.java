@@ -4,21 +4,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.ImageView;
 
 import com.ant.liao.GifView;
 
 import la.xiaosiwo.laught.R;
 import la.xiaosiwo.laught.utils.ImageUtil;
 import la.xiaosiwo.laught.utils.SystemUtil;
+import la.xiaosiwo.laught.views.BitmapImageView;
 
 /**
  * author:OF,time:2015-06-28 21:51:12.
  */
-public class ImagePriviewActivity extends BaseActivity {
+public class ImagePreviewActivity extends BaseActivity {
 
-    private final String TAG = "ImagePriviewActivity";
-    private ImageView mImageView;
+    private final String TAG = "ImagePreviewActivity";
+    private BitmapImageView mImageView;
     private GifView mGifView;
     private String mUri;
     @Override
@@ -26,7 +26,7 @@ public class ImagePriviewActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.image_priview_layout);
-        mImageView = (ImageView) findViewById(R.id.static_image_view);
+        mImageView = (BitmapImageView) findViewById(R.id.static_image_view);
         mGifView = (GifView) findViewById(R.id.dynamic_image_view);
         init();
     }
@@ -56,7 +56,7 @@ public class ImagePriviewActivity extends BaseActivity {
         }else{
             mGifView.setVisibility(View.GONE);
             mImageView.setVisibility(View.VISIBLE);
-            mImageView.setImageBitmap(ImageUtil.getBitmapFromLocal(absolutePath));
+            mImageView.setImagePath(absolutePath);
         }
 
     }

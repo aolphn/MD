@@ -33,7 +33,7 @@ public class MainActivityCase extends ActivityInstrumentationTestCase2<MainActiv
     }
 
     public void testMainActivity() throws Exception {
-        solo.clickOnButton("赞成");
-        solo.clickOnActionBarItem(R.id.menu_image);
+
+        solo.clickOnActionBarItem(R.id.menu_pattern_lock);
     }
 }

@@ -17,4 +17,13 @@ public class Constant {
 	 * If SDcard usable space less than this value then we need hint low space.
 	 */
 	public final static long LOW_CAPACITY_THRESHOLD = 40*1024;
+	public final static String SHARED_PROFILE = "profile";
+	public final static String GESTURE_PWD = "GESTURE_PWD";
+	public final static String GESTURE_PWD_DEFAULT = "empty";
+	public final static String UNLOCK_REASON = "unlock_reason";
+	public final static String UNLOCK_FOR_CHECK_PWD = "unlock_for_check";
+	public final static String UNLOCK_TIME = "unlock_time";
+
+
+
 }
