@@ -2,6 +2,7 @@ package la.xiaosiwo.laught.activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
@@ -11,6 +12,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yixia.weibo.sdk.util.StringUtils;
 
 import la.xiaosiwo.laught.appliaction.LaughterApplication;
+import la.xiaosiwo.laught.common.Constant;
 import la.xiaosiwo.laught.utils.DateUtil;
 
 /**
@@ -19,11 +21,13 @@ import la.xiaosiwo.laught.utils.DateUtil;
 public abstract  class BaseActivity extends Activity {
 
 
+    protected SharedPreferences mShared;
     protected ImageLoader imageLoader = ImageLoader.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((LaughterApplication)getApplication()).removeOneActivity(this);
+        ((LaughterApplication)getApplication()).addOneActivity(this);
+        mShared = getSharedPreferences(Constant.SHARED_PROFILE, Activity.MODE_PRIVATE);
         Log.i(this.getLocalClassName(), ":onCreate at:" + DateUtil.getCurDateStr());
     }
 

@@ -1,10 +1,10 @@
 package la.xiaosiwo.laught.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import la.xiaosiwo.laught.models.TextLaughterItem;
 /**
  * Created by OF on 2015/6/24 0024.
  */
-public class TextImtesAdapter extends BaseAdapter {
+public class TextImtesAdapter extends RecyclerView.Adapter {
 
     private LayoutInflater mInflater;
     private ArrayList<TextLaughterItem> mList;
@@ -27,38 +27,37 @@ public class TextImtesAdapter extends BaseAdapter {
             mList = list;
         }
     }
-    @Override
-    public int getCount() {
-        return mList.size();
-    }
-    @Override
-    public TextLaughterItem getItem(int position) {
-        return mList.get(position);
-    }
+
 
     @Override
     public long getItemId(int position) {
         return position;
     }
 
+
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View view = null;
-        ViewHolder holder = null;
-        TextLaughterItem item = getItem(position);
-        if(convertView == null){
-            view = mInflater.inflate(R.layout.text_item_layout,null);
-            holder = new ViewHolder();
-            holder.content = (TextView)view.findViewById(R.id.text_content);
-            view.setTag(holder);
-        }else{
-            view = convertView;
-            holder = (ViewHolder)view.getTag();
-        }
-        holder.content.setText(item.getmContent());
-        return view;
+    public int getItemCount() {
+        return mList.size();
     }
-    class ViewHolder{
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.text_item_layout,null);
+        ViewHolder holder = new ViewHolder(view);
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        ViewHolder holder = (ViewHolder)viewHolder;
+        final TextLaughterItem item = mList.get(i);
+        holder.content.setText(item.getmContent());
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         TextView content;
+        public ViewHolder(View view){
+            super(view);
+        }
     }
 }

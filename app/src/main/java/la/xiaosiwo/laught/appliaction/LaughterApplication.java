@@ -6,27 +6,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 import android.util.Log;
-
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.yixia.camera.demo.service.AssertService;
 import com.yixia.weibo.sdk.VCamera;
-
 import org.litepal.LitePalApplication;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.WeakHashMap;
-
 import la.xiaosiwo.laught.common.Constant;
 import la.xiaosiwo.laught.manager.DatabaseManager;
 import la.xiaosiwo.laught.manager.ImagesManager;
 import la.xiaosiwo.laught.manager.TextsManager;
 import la.xiaosiwo.laught.utils.FileUtil;
-
 /**
  * Created by Administrator on 2015/6/26.
  */

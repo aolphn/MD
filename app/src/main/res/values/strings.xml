@@ -62,6 +62,19 @@
     <string name="android_studio">This app is created by android studio\</string>
     <string name="shot_picture">拍照片</string>
     <string name="shot_video">拍视频</string>
+    <!--图案解锁相关-->
+    <string name="pattern_lock">图案解锁</string>
+    <string name="draw_gesture_pwd">绘制图案密码</string>
+    <string name="reset_gesture_pwd">重绘图案密码</string>
+    <string name="pls_unlock">请解锁！</string>
+    <string name="draw_gesture_pwd_again">再次绘制图案密码</string>
+    <string name="pwd_weak">图案密码强度太弱</string>
+    <string name="diff_pwd">两次图案密码不一致</string>
+    <string name="pwd_set_suc">图案密码设置成功，请牢记！</string>
+    <string name="pwd_error">图案密码错误</string>
+
+
+
     <string name="nothing">There is nothing else</string>
     <string name="text_laughter">文字笑话集锦</string>
     <string name="pull_down_for_refresh">下拉刷新</string>

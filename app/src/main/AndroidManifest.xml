@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="la.xiaosiwo.laught"
-    android:versionCode="2"
-    android:versionName="1.1.0.150705" >
+    android:versionCode="3"
+    android:versionName="1.1.1.150719" >
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="19" >
@@ -45,36 +45,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ImagePriviewActivity"
-            android:label="@string/title_activity_image_priview"
-             >
-
-        </activity>
+            android:name=".activities.ImagePreviewActivity"
+            android:label="@string/title_activity_image_priview"  />
+        <activity
+            android:name=".activities.SetPatternPwdActivity" />
+        <activity
+            android:name=".activities.UnlockActivity" />
         <activity
             android:name=".activities.MediaRecorderActivity"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/CameraTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/CameraTheme"/>
         <activity
             android:name=".activities.MediaPreviewActivity"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/CameraTheme"></activity>
+            android:theme="@style/CameraTheme"/>
         <activity
             android:name=".activities.VideoPlayerActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/CameraTheme"></activity>
+            android:theme="@style/CameraTheme"/>
     </application>
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
         android:targetPackage="la.xiaosiwo.laught"
-        android:label="This is my Test case"></instrumentation>
+        android:label="This is my Test case"/>
 </manifest>
