@@ -307,6 +307,7 @@ public class StringUtil {
 			for(Point p : list){
 				sb.append(p.getValue());
 			}
+//			return sb.toString();
 			return MD5Util.MD5Encode(sb.toString());
 		}
 

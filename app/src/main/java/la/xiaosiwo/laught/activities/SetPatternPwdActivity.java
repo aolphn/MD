@@ -54,7 +54,7 @@ public class SetPatternPwdActivity extends BaseActivity {
                         String pwd = StringUtil.getGestureFromPoints(second);
                         first = null;
                         second = null;
-                        mShared.edit().putString(Constant.GESTURE_PWD, MD5Util.MD5Encode(pwd)).commit();
+                        mShared.edit().putString(Constant.GESTURE_PWD, pwd).commit();
                     }
                     finish();
                 }

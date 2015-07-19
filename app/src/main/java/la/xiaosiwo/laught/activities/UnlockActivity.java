@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -23,7 +24,7 @@ import la.xiaosiwo.laught.views.Point;
  */
 public class UnlockActivity extends BaseActivity {
 
-    private final String TAG = "SetPatternPwdActivity";
+    private final String TAG = "UnlockActivity";
     private PatternLockView mView;
     private TextView mHintTv;
     private TextView mReset;
@@ -45,6 +46,7 @@ public class UnlockActivity extends BaseActivity {
                 mShared.edit().putLong(Constant.UNLOCK_TIME,System.currentTimeMillis()).commit();
                 finish();
             }else{
+                Log.i(TAG,"old pwd:"+oldPwd+",cur pwd:"+pwd);
                 toast(getString(R.string.pwd_error));
             }
 
