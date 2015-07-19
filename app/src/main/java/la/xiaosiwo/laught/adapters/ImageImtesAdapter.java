@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 
 import java.util.ArrayList;
 
@@ -48,10 +47,11 @@ public class ImageImtesAdapter extends RecyclerView.Adapter {
         options = new DisplayImageOptions.Builder()
                 .showImageForEmptyUri(R.drawable.default_img)
                 .showImageOnFail(R.drawable.default_img)
-                .cacheInMemory(true)
-                .cacheOnDisc(true)
+                .cacheInMemory(false)
+                .cacheOnDisc(false)
                 .considerExifParams(true)
                 .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
+                .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
         recyclerView = lv;
     }
@@ -77,21 +77,22 @@ public class ImageImtesAdapter extends RecyclerView.Adapter {
         if (mImageClickListener != null){
             holder.bitmap.setOnClickListener(mImageClickListener);
         }
-        mImageLoader.loadImage("file://" + item.getmUrl(), null, options, new SimpleImageLoadingListener() {
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                Log.i(TAG, "image uri:" + imageUri + ",holder tag:" + leftImage.getTag());
-                if (imageUri.equals(leftImage.getTag())) {
-                    ImageView img = ((ImageView) recyclerView.findViewWithTag(imageUri));
-                    if (img != null) {
-                        img.setImageBitmap(loadedImage);
-
-                        img.setTag("");
-                        img.setTag(R.drawable.default_img, item.getmUrl());
-                    }
-                }
-            }
-        });
+//        mImageLoader.loadImage("file://" + item.getmUrl(), null, options, new SimpleImageLoadingListener() {
+//            @Override
+//            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+//                Log.i(TAG, "image uri:" + imageUri + ",holder tag:" + leftImage.getTag());
+//                if (imageUri.equals(leftImage.getTag())) {
+//                    ImageView img = ((ImageView) recyclerView.findViewWithTag(imageUri));
+//                    if (img != null) {
+//                        img.setImageBitmap(loadedImage);
+//
+//                        img.setTag("");
+//                        img.setTag(R.drawable.default_img, item.getmUrl());
+//                    }
+//                }
+//            }
+//        });
+        mImageLoader.displayImage("file://" + item.getmUrl(),holder.bitmap,options);
     }
 
     @Override
