@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import la.xiaosiwo.laught.R;
 import la.xiaosiwo.laught.callback.LaughterObjCallback;
 import la.xiaosiwo.laught.common.Constant;
-import la.xiaosiwo.laught.utils.MD5Util;
 import la.xiaosiwo.laught.utils.StringUtil;
 import la.xiaosiwo.laught.views.PatternLockView;
 import la.xiaosiwo.laught.views.Point;
@@ -54,7 +53,7 @@ public class SetPatternPwdActivity extends BaseActivity {
                         String pwd = StringUtil.getGestureFromPoints(second);
                         first = null;
                         second = null;
-                        mShared.edit().putString(Constant.GESTURE_PWD, MD5Util.MD5Encode(pwd)).commit();
+                        mShared.edit().putString(Constant.GESTURE_PWD, pwd).commit();
                     }
                     finish();
                 }
