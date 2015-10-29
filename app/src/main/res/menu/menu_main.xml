@@ -15,5 +15,10 @@
         android:icon="@drawable/white_frame_black_content_rect"
         android:orderInCategory="3"
         android:title="@string/pattern_lock"/>
+    <item
+        android:id="@+id/menu_specail_style_1"
+        android:icon="@drawable/white_frame_black_content_rect"
+        android:orderInCategory="4"
+        android:title="@string/special_style"/>
 
 </menu>

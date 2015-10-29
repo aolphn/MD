@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Laught</string>
+    <string name="app_name">Material Design</string>
+    <string name="action_settings">Settings</string>
     <string name="hint">提示</string>
     <string name="dialog_yes">是</string>
     <string name="dialog_no">否</string>
@@ -7,56 +8,10 @@
     <string name="action_cancel">取消</string>
     <string name="action_ok">确定</string>
     <string name="version_theme">1.0.0</string>
-    <string name="imageview_content_description"></string>
-    <string name="record_camera_author">%1$s 作品</string>
-    <string name="record_camera_title">拍摄</string>
-    <string name="record_camera_back">返回</string>
-    <string name="record_camera_next">下一步</string>
-    <string name="record_camera_back_delete">回删</string>
-    <string name="record_camera_delay">延迟</string>
-    <string name="record_camera_filter">滤镜</string>
-    <string name="record_camera_init_faild">初始化视频存储路径失败</string>
-    <string name="record_camera_progress_message">正在转码…</string>
-    <string name="record_camera_check_available_faild">手机满了！至少需要200M存储空间才能继续拍摄！</string>
-    <string name="record_camera_open_audio_faild">无法打开录音设备！</string>
-    <string name="record_camera_save_faild">视频信息保存失败！</string>
-    <string name="record_camera_exit_dialog_message">是否放弃这段视频？</string>
-    <string name="delete_onlinemusic_message">是否删除已下载音乐？</string>
-    <string name="record_camera_import">导入</string>
-    <string name="record_camera_import_image">照片</string>
-    <string name="record_camera_import_image_choose">从本地照片选择</string>
-    <string name="record_camera_import_image_faild">导入照片失败</string>
-    <string name="record_camera_import_video">视频</string>
-    <string name="record_camera_import_video_title">截\t取</string>
-    <string name="record_camera_import_video_choose">从本地视频选择</string>
-    <string name="record_camera_import_video_faild">导入视频失败</string>
-    <string name="record_camera_tools_focus">焦点</string>
-    <string name="record_camera_tools_led">闪光</string>
-    <string name="record_camera_ghost">幽灵</string>
-    <string name="record_camera_preview_title">编辑</string>
-    <string name="record_camera_preview_pre">拍摄</string>
-    <string name="record_camera_preview_next">下一步</string>
-    <string name="record_camera_cancel_dialog_yes">确定</string>
-    <string name="record_camera_cancel_dialog_no">取消</string>
-    <string name="record_video_transcoding_faild">视频转码失败</string>
-    <string name="record_video_transcoding_success">视频保存在:%s</string>
-    <string name="record_read_object_faild">拍摄信息读取失败！请检查SD卡，稍后重试！</string>
-    <string name="record_preview_theme">主题</string>
-    <string name="record_preview_title">预览</string>
-    <string name="record_preview_theme_original">原始</string>
-    <string name="record_preview_theme_load_faild">主题加载失败</string>
-    <string name="record_preview_encoding">正在转码…</string>
-    <string name="record_preview_encoding_format">转码中\t%d%%</string>
-    <string name="record_preview_music_nothing">无</string>
-    <string name="record_preview_tab_theme">主题</string>
-    <string name="record_preview_tab_filter">滤镜</string>
-    <string name="record_preview_building">视频生成中…</string>
-    <string name="download_success">下载完成</string>
-    <string name="download_error">下载失败</string>
+    <string name="image_content_description"></string>
+    <string name="user_name">用户名</string>
+    <string name="password">密码</string>
 
-    <string name="loading_tips">加载中…</string>
-    <string name="nodata">没有数据</string>
-    <string name="record_camera_import_video_folder_title">相册</string>
     <string name="hello_world">Hello world!</string>
     <string name="image_can_not_display">无法显示图片</string>
     <string name="android_studio">This app is created by android studio\</string>
@@ -73,134 +28,11 @@
     <string name="pwd_set_suc">图案密码设置成功，请牢记！</string>
     <string name="pwd_error">图案密码错误</string>
 
-
+    <string name="special_style">特效</string>
 
     <string name="nothing">There is nothing else</string>
-    <string name="text_laughter">文字笑话集锦</string>
-    <string name="pull_down_for_refresh">下拉刷新</string>
-    <string name="release_refresh">松开刷新</string>
-    <string name="in_refresh">正在刷新</string>
-    <string name="support">赞成</string>
-    <string name="against">反对</string>
-    <string-array name="menu_array">
-        <item>文字</item>
-        <item>图片</item>
-        <item>视频</item>
-    </string-array>
-    <string-array name="test_items">
-        <item>我曾经仰慕陈百强，他…去世了；我仰慕过黄家驹，他摔死了；我仰慕过张国荣，他跳楼自杀了；我仰慕过大哥柯受良，他患病走了；我仰慕过迈克杰克逊，他…哎，啥都不说了，说起来眼泪哗哗地、我现在准备仰慕TFboy，谁也别拦我！求支持</item>
-        <item>小时候吃西瓜不吐仔，吃完之后去野地里拉屎，十几天后竟然发芽了，后来每天去看一次，还给他浇水，之后长出了个四斤的大西瓜，然后我又把他给吃了。</item>
-        <item>小时候看到哥哥在打飞机，我问哥哥在干嘛，哥哥说在练武术，我永远不会忘记小学时候的一次表演，老师说谁会武术，于是我上去了。。。</item>
-        <item>几个小伙伴去偷西瓜！！大哥交代好了偷完去他家老房聚齐，大家就直扑村东一块西瓜地，到地方一看，有人看瓜，还在煮饺子。
-            大哥吩咐，你们去最远的南面偷，我在这里看着。
-            大家就去了，刚进地里还没摸两个就听见看瓜的在一边骂一边追来了，吓的大家撒丫子就跑。。。
-            还好没追上，垂头丧气的回到老房！
-            待了一会儿，大哥居然端着饺子回来了。。。哥就是哥，膜拜啊！！！
-        </item>
-        <item>下班回家，走在路上碰到三个小学生。
-            只见三个小学生站成一排，其中一人说道：二弟，三弟，今日你我三人结为异姓兄弟，有辣条同享，有罚站同当，不求同年同月同日三好学生，但求同年同月同日叫家长，干了这瓶可乐，来世再爱不回头！
-        </item>
-        <item>和弟弟抬一箱水，住四楼，在楼下，他说：“你搬两层，我搬两层。”
-一想，很公平嘛，就先搬了两层，一抬头，到三楼了。。。        </item>
-        <item>下班回家，走在路上碰到三个小学生。
-            只见三个小学生站成一排，其中一人说道：二弟，三弟，今日你我三人结为异姓兄弟，有辣条同享，有罚站同当，不求同年同月同日三好学生，但求同年同月同日叫家长，干了这瓶可乐，来世再爱不回头！
-        </item>
-        <item>做人最重要的是讲诚信，其次才是骗人。        </item>
-        <item>不是我要熬夜，是黑夜需要我这颗璀璨明亮的星。        </item>
-        <item>晚上朋友请吃饭，我觉得有必要提前准备一下，比如白天就不吃了。      </item>
-        <item>眼瞅着同学孩子从小到大，越长越难看；我无话可说，只能在朋友圈默默点赞。      </item>
-        <item>难过的时候我就打开钱包，钱包里什么都没有，平衡了，至少我还有个钱包，钱包却什么都没有。    </item>
-        <item>单身屌丝们注意啦：身边要是有男性朋友搞基、请鼓励他们、包容他们、我们应该打破传统世俗的观念、因为一旦他们成了，就可以省下两个妹子给你们、 阿弥陀佛！！！    </item>
-        <item>本人将于10月1日在北京香格里拉大酒店设宴，举行结婚典礼！敬备喜筵，恭候阁下光临！ 望大家相互告知。具体哪一年我会再通知。    </item>
-        <item>我一直不明白：为什么我一个小小散户就可以左右整个股市？
-每当我一买入它就下跌，一卖出它就上涨，空仓的时候大盘疯涨，满仓的时候大盘狂泻，为什么手握万亿资金的庄家们就死死盯着我这几万块钱不放？？？这是为毛啊？？？！！！   </item>
-        <item>近期，色调板上又多出一种颜色：股绿色。股市继熊市和牛市之后，近期又推出了猴市。    </item>
 
-        <item>人类之所以有进步的主要原因，是下一代不听上一代的话。</item>
 
-       <item>我相信我就是我，我相信明天，我相信伸手就能要到钱。--一个乞丐的梦想</item>
 
-       <item>我每天都要自行犬化三次，一次穷成狗，一次累成狗，还有一次困成狗！</item>
-       <item>保安：干嘛的？
-           我：我想去楼顶看看。
-           保安：别装了，就说你亏多少吧？
-           我：5万。。。
-           保安：一楼大厅排队，撞柱子去吧！
-           我：为什么？
-           保安：亏10万才能上二楼，20万三楼，30万4楼，40万五楼，100万六楼以上，楼顶VIP都是大户，你瞎掺乎什么！</item>
-       <item>高考放榜了，一个人漫无目的的游荡在小区里，学霸家里不时传来的鞭炮声让我心如刀割，这已经是今晚我走的第三个小区了，感觉这个世界再也找不到一块净土了。
-        我独自爬上屋顶，狠狠的踩灭了烟头对着天空大喊：“考的好有个卵用！当年劳资要不是考的好怎么会去学金融，要不是学金融怎么会去买股票！”</item>
-       <item>男：“大师，我失散多年的儿子不肯叫我爹怎么办？”
-        大师：“带他去股票交易所！”
-        男：“您是说让他先开阔眼界，然后自然就叫我啦？”
-        大师：“不，去了他自然会叫跌！</item>
-    </string-array>
-    <string-array name="test_items2">
-        <item>五千点的风和雨啊，藏了多少梦。
-黄色的脸惊恐的眼，没有了笑容。八千点美丽梦幻，像是一首歌。
-不论你来自何方，将去向何处。
-一样套牢，一样的痛，曾经的苦难，我们留在心中。
-一样割肉，一样的补，来还有梦，我们一起开拓。
-手牵着手不分你我，昂首向前冲，让世界知道跳楼都是中国人</item>
-        <item>心如苍径空如水，意比松捣枫叶飞；窗外武腾兰花香，情似饭捣爱相随。</item>
-        <item>我哥们女朋友补蛇给咬了，哥们用嘴给她吸，突然看到她女朋友的两只大白兔，吞了一下口水，现在坟头草都长一米的多高了。。</item>
-        <item>有个富二代想找老婆，说城里的太开放，决定找村里的姑娘结婚，后来找到了，在洞房那天，富二代问他，你知道什么叫做爱吗？
-村里姑娘说不知道，做完后那女的说：我考，这就叫做爱，以前跟表哥放牛的时候天天做。
-        </item>
-        <item>一哥们儿去考雅思，口试的时候看过题目之后习惯性的说了句，我日。
-考官懂一点中文，就问什么意思。
-他说这是我们中国人在遇到重大问题时，借助太阳的力量激励自己！        </item>
-        <item>《拦精灵》
-预备，唱：
-左腿的右边右腿的左边有一只拦精灵，它们空薄又透明，它们平滑又美丽。
-他们自由自在穿梭在那黑色的大森林，它们安全体贴防止喜当爹~~~ </item>
-        <item>那年暑假，跟着女友和她爸妈去旅游，在车上，女友妈妈晕车，我不加思索的对她叫“阿姨，我有避晕药。。。”        </item>
-        <item>“美女，约吗？”
-“约！”
-“我们先去吃点饭呀！”
-“不去！”
-“那我们去哪呀！”
-“听你的…”
-“去电影院？”
-“不去！”
-“去商场？”
-“不去！”
-“你不是说听我的吗！”
-“你TM能不能说个没有人的地方！”
-“墓地离这太TM远了。。。 ” </item>
-        <item>第一次去女朋友家，吃饭期间二货女友不停的各种夸她妈妈做饭手艺怎么怎么样，我也都笑脸附和着评论各种菜怎么怎么好吃。
-突然女友来一句：“知道我妈是怎么把我爸拴在家里的么？”
-心不在焉的我张嘴就来了一句：“用狗链么？”</item>
-        <item>在迪厅跳舞，听到一男向女朋友求婚 “嫁给我吧”
-女：“那你得八抬大轿娶我”
-男子跑开，一会儿，一个服务员过来了 “小姐，有个先生在吧台大叫说要娶你!! </item>
-        <item>“昨天相亲怎么样？”
-“有鱼、有肉，还有鸡，菜很好。”
-“问你人怎么样？”
-“光顾吃了，没注意看。”
-“活该你单身！” </item>
-        <item>刚谈了个女朋友，父母离异的， 女朋友和她妈一起过，昨天晚上我送女朋友回家。。。
-刚到她家门口，她妈看见我，热情的对我说：“小伙子 进来坐坐吧！”
-我当时的十分害羞，心想，两手空空去了，很没礼貌，由于太紧张脑子抽风说了句：“不了阿姨，太晚了！寡妇门前是非多……”
-尼玛，脸被打肿了是小事，我TM的又成了只单身狗。。。  </item>
-        <item>最近上网看到说是用盐洗脸可以除角质，于是今天早我拿了包盐进厕所准备试试。
-室友看见了唏嘘了一声：“怎么，屎不够咸啊！”。  </item>
-        <item>每次学不下去，我同桌妹子就拉开衣服低头看看自己的胸。
-然后心里暗暗告诉自己，“像我这种平胸的，只能好好学习。”
-一旁的我幽幽地说：“我有时候也学不进，可以也借我看看吗？”    </item>
-        <item>宿舍里，半夜起来上厕所，睡得迷迷糊糊，看到远处有一点红光，咦，又忘记关电源，随手去按。啊啊啊啊！艹，没烧完的蚊香。   </item>
-
-        <item>人类之所以有进步的主要原因，是下一代不听上一代的话。</item>
-
-       <item>我相信我就是我，我相信明天，我相信伸手就能要到钱。--一个乞丐的梦想</item>
-
-       <item>放大镜能放大是吧，我买了个放大镜，感觉被坑了，买回来在宿舍放了半年，还是那么大。</item>
-       <item>开学的一天，室友从国外带来一瓶除皱霜给小丽，舍友说：“可管用了，试试吧!”
-小丽说：“真的，我试试。”
-第二天小丽照镜子一看说：“咦，我双眼皮呢？” </item>
-       <item>同学聚会有一次一起玩真心话大冒险。朋友问女朋友。有没有车震过？
-女朋友回答有。
-我心里想女朋友真给我面子。没有在同学面前暴露出我没有车。</item>
-    </string-array>
     <string name="title_activity_image_priview">ImagePriviewActivity</string>
 </resources>

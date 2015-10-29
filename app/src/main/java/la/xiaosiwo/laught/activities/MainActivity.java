@@ -1,282 +1,90 @@
 package la.xiaosiwo.laught.activities;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-
-import com.ypy.eventbus.EventBus;
 
 import la.xiaosiwo.laught.R;
-import la.xiaosiwo.laught.adapters.MenusAdapter;
-import la.xiaosiwo.laught.common.Constant;
-import la.xiaosiwo.laught.events.PrepareImageContentEvent;
-import la.xiaosiwo.laught.events.PrepareTextContentEvent;
-import la.xiaosiwo.laught.fragments.ImageContentFragment;
-import la.xiaosiwo.laught.fragments.TextContentFragment;
-import la.xiaosiwo.laught.views.MaterialMenuDrawable;
-import la.xiaosiwo.laught.views.MaterialMenuIcon;
 
 /**
- * author OF.
+ * author:OF,time:2015-06-28 21:51:12.
  */
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends BaseActivity {
 
-    /** DrawerLayout */
-    private DrawerLayout mDrawerLayout;
-    /** 左边栏菜单 */
-    private ListView mMenuListView;
-    /** 右边栏 */
-    private RelativeLayout right_drawer;
-    /** 菜单列表 */
-    private String[] mMenuTitles;
-    /** Material Design风格 */
-    private MaterialMenuIcon mMaterialMenuIcon;
-    /** 菜单打开/关闭状态 */
-    private boolean isDirection_left = false;
-    /** 右边栏打开/关闭状态 */
-    private boolean isDirection_right = false;
-    private View showView;
-    private String TAG = "MainActivity";
-    private MenusAdapter mMenuAdapter;
-    Fragment mTextFragment = null;
-    Fragment mImageFragment = null;
-    FragmentManager mFragmentManager;
-    protected SharedPreferences mShared;
-    private int mCurrentFragment = -1;
+    private final String TAG = MainActivity.class.getSimpleName();
+    Toolbar toolbar;
+    CollapsingToolbarLayout collapsingToolbarLayout;
+
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle drawerToggle;
+
+    CoordinatorLayout rootLayout;
+    FloatingActionButton fabBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        init( savedInstanceState);
+        setContentView(R.layout.main_layout);
+
+        initToolbar();
+        initInstances();
     }
 
-
-    private void init(Bundle savedInstanceState){
-        mShared = getSharedPreferences(Constant.SHARED_PROFILE, Activity.MODE_PRIVATE);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mMenuListView = (ListView) findViewById(R.id.left_drawer);
-        right_drawer = (RelativeLayout) findViewById(R.id.right_drawer);
-        this.showView = mMenuListView;
-        mFragmentManager = getSupportFragmentManager();
-        // 初始化菜单列表
-        mMenuTitles = getResources().getStringArray(R.array.menu_array);
-        mMenuAdapter = new MenusAdapter(this,mMenuTitles);
-        mMenuListView.setAdapter(mMenuAdapter);
-        mMenuListView.setOnItemClickListener(new DrawerItemClickListener());
-        // 设置抽屉打开时，主要内容区被自定义阴影覆盖\
-        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
-                GravityCompat.START);
-        // 设置ActionBar可见，并且切换菜单和内容视图
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
-        mMaterialMenuIcon = new MaterialMenuIcon(this, Color.WHITE, MaterialMenuDrawable.Stroke.THIN);
-        mDrawerLayout.setDrawerListener(new DrawerLayoutStateListener());
-        if (savedInstanceState == null) {
-            selectItem(0);
-        }
+    private void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
-    /**
-     * ListView上的Item点击事件
-     *
-     */
-    private class DrawerItemClickListener implements
-            ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
-            selectItem(position);
-            if (position == 0){
-                EventBus.getDefault().post(new PrepareTextContentEvent(PrepareTextContentEvent.INIT_DATA));
-            }else if(position ==1){
-                EventBus.getDefault().post(new PrepareImageContentEvent(PrepareImageContentEvent.INIT_DATA));
+
+    private void initInstances() {
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        drawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.hello_world, R.string.hello_world);
+        drawerLayout.setDrawerListener(drawerToggle);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        rootLayout = (CoordinatorLayout) findViewById(R.id.rootLayout);
+
+        fabBtn = (FloatingActionButton) findViewById(R.id.fabBtn);
+        fabBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(rootLayout, "Hello. I am Snackbar!", Snackbar.LENGTH_SHORT)
+                        .setAction("Undo", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                            }
+                        })
+                        .show();
             }
-        }
+        });
+
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout);
+        collapsingToolbarLayout.setTitle(getString(R.string.app_name));
     }
 
-    /**
-     * DrawerLayout状态变化监听
-     */
-    private class DrawerLayoutStateListener extends
-            DrawerLayout.SimpleDrawerListener {
-        /**
-         * 当导航菜单滑动的时候被执行
-         */
-        @Override
-        public void onDrawerSlide(View drawerView, float slideOffset) {
-            showView = drawerView;
-            if (drawerView == mMenuListView) {// 根据isDirection_left决定执行动画
-                mMaterialMenuIcon.setTransformationOffset(
-                        MaterialMenuDrawable.AnimationState.BURGER_ARROW,
-                        isDirection_left ? 2 - slideOffset : slideOffset);
-            } else if (drawerView == right_drawer) {// 根据isDirection_right决定执行动画
-                mMaterialMenuIcon.setTransformationOffset(
-                        MaterialMenuDrawable.AnimationState.BURGER_ARROW,
-                        isDirection_right ? 2 - slideOffset : slideOffset);
-            }
-        }
-
-        /**
-         * 当导航菜单打开时执行
-         */
-        @Override
-        public void onDrawerOpened(android.view.View drawerView) {
-            if (drawerView == mMenuListView) {
-                isDirection_left = true;
-            } else if (drawerView == right_drawer) {
-                isDirection_right = true;
-            }
-        }
-
-        /**
-         * 当导航菜单关闭时执行
-         */
-        @Override
-        public void onDrawerClosed(android.view.View drawerView) {
-            if (drawerView == mMenuListView) {
-                isDirection_left = false;
-            } else if (drawerView == right_drawer) {
-                isDirection_right = false;
-                showView = mMenuListView;
-            }
-        }
-    }
-
-    /**
-     * 切换主视图区域的Fragment
-     *
-     * @param position\
-     */
-    private void selectItem(int position) {
-        if(mCurrentFragment == position){
-            return;
-        }
-        mCurrentFragment = position;
-        Bundle args = new Bundle();
-        switch (position) {
-            case 0:
-                if (mTextFragment == null){
-                    mTextFragment = new TextContentFragment();
-                }
-                break;
-            case 1:
-                if (mImageFragment == null){
-                    mImageFragment = new ImageContentFragment();
-                }
-//                EventBus.getDefault().post(new PrepareImageContentEvent(PrepareImageContentEvent.INIT_DATA));
-                break;
-            case 2:
-                args.putString("key", mMenuTitles[position]);
-                return;
-            case 3:
-                args.putString("key", mMenuTitles[position]);
-                break;
-            default:
-                break;
-        }
-
-        if (position == 0){
-            mTextFragment.setArguments(args);
-            // FragmentActivity将点击的菜单列表标题传递给Fragment
-            mFragmentManager.beginTransaction()
-                    .replace(R.id.content_frame, mTextFragment).commit();
-        }else if (position == 1){
-            mImageFragment.setArguments(args);
-            mFragmentManager.beginTransaction().replace(R.id.content_frame, mImageFragment).commit();
-        }
-
-        // 更新选择后的item和title，然后关闭菜单
-//        mMenuListView.setItemChecked(position, true);
-//        mMenuListView.setSelection(position);
-        mMenuAdapter.setmSelectedPosition(position);
-        mMenuAdapter.notifyDataSetChanged();
-        setTitle(mMenuTitles[position]);
-        mDrawerLayout.closeDrawer(mMenuListView);
-    }
-
-    /**
-     * 点击ActionBar上菜单
-     */
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case android.R.id.home:
-                if (showView == mMenuListView) {
-                    if (!isDirection_left) { // 左边栏菜单关闭时，打开
-                        mDrawerLayout.openDrawer(mMenuListView);
-                    } else {// 左边栏菜单打开时，关闭
-                        mDrawerLayout.closeDrawer(mMenuListView);
-                    }
-                } else if (showView == right_drawer) {
-                    if (!isDirection_right) {// 右边栏关闭时，打开
-                        mDrawerLayout.openDrawer(right_drawer);
-                    } else {// 右边栏打开时，关闭
-                        mDrawerLayout.closeDrawer(right_drawer);
-                    }
-                }
-                break;
-            case R.id.menu_image:
-                if (!isDirection_right) {// 右边栏关闭时，打开
-                    if (showView == mMenuListView) {
-                        mDrawerLayout.closeDrawer(mMenuListView);
-                    }
-//                    mDrawerLayout.openDrawer(right_drawer);
-                    //shot image
-                    startActivity(new Intent(MainActivity.this, MediaRecorderActivity.class));
-                } else {// 右边栏打开时，关闭
-
-                    mDrawerLayout.closeDrawer(right_drawer);
-                }
-                break;
-            case R.id.menu_pattern_lock:
-                if (!isDirection_right) {// 右边栏关闭时，打开
-                    if (showView == mMenuListView) {
-                        mDrawerLayout.closeDrawer(mMenuListView);
-                    }
-                    startActivity(new Intent(MainActivity.this, SetPatternPwdActivity.class));
-                } else {// 右边栏打开时，关闭
-                    mDrawerLayout.closeDrawer(right_drawer);
-                }
-            default:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * 根据onPostCreate回调的状态，还原对应的icon state
-     */
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
+    public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        mMaterialMenuIcon.syncState(savedInstanceState);
+        drawerToggle.syncState();
     }
 
-    /**
-     * 根据onSaveInstanceState回调的状态，保存当前icon state
-     */
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        mMaterialMenuIcon.onSaveInstanceState(outState);
-        super.onSaveInstanceState(outState);
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
     }
 
-    /**
-     * 加载菜单
-     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -285,39 +93,20 @@ public class MainActivity extends FragmentActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        if(needUnlock()){
-            //需要验证手势密码
-            Intent intent = new Intent(this,UnlockActivity.class);
-            intent.putExtra(Constant.UNLOCK_REASON,Constant.UNLOCK_FOR_CHECK_PWD);
-            startActivity(intent);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (drawerToggle.onOptionsItemSelected(item))
+            return true;
+
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
-    }
 
-    @Override
-    protected void onDestroy() {
-
-        super.onDestroy();
-    }
-
-
-    /**
-     * 检查手势密码，看是否需要输入手势密码进行验证。
-     * @return
-     */
-    private boolean needUnlock(){
-        String pwd = mShared.getString(Constant.GESTURE_PWD,Constant.GESTURE_PWD_DEFAULT);
-        long lastTime = mShared.getLong(Constant.UNLOCK_TIME,0);
-        if(Constant.GESTURE_PWD_DEFAULT.equals(pwd)){
-            return false;
-        }else{
-            //距离上次设置密码或者解锁时间小于5分钟则不需要解锁。
-            if(Math.abs(System.currentTimeMillis()-lastTime) < 1000*60*5){
-                return  false;
-            }else{
-                return true;
-            }
-        }
+        return super.onOptionsItemSelected(item);
     }
 }
