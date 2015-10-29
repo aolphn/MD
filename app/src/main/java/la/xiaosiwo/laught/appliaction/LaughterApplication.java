@@ -3,25 +3,21 @@ package la.xiaosiwo.laught.appliaction;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Environment;
-import android.util.Log;
+
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.yixia.camera.demo.service.AssertService;
-import com.yixia.weibo.sdk.VCamera;
+
 import org.litepal.LitePalApplication;
-import java.io.File;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.WeakHashMap;
+
 import la.xiaosiwo.laught.common.Constant;
 import la.xiaosiwo.laught.manager.DatabaseManager;
-import la.xiaosiwo.laught.manager.ImagesManager;
-import la.xiaosiwo.laught.manager.TextsManager;
-import la.xiaosiwo.laught.utils.FileUtil;
 /**
  * Created by Administrator on 2015/6/26.
  */
@@ -44,31 +40,13 @@ public class LaughterApplication extends Application {
         LitePalApplication.initialize(this);
         try{
             DatabaseManager.getInstance().init();
-            TextsManager.getInstance().init();
-            ImagesManager.getInstance().init();
         }catch (Exception e){
             e.printStackTrace();
         }
-        initVCamera();
+
     }
 
-    /**
-     * @author:OF,time:2015-07-06 23:41:16
-     */
-    private void initVCamera(){
-        // set cache folder
-        //step-1 create folders
-        FileUtil.createDir(new File(Constant.APP_ROOT_PATH));
-        FileUtil.createDir(new File(Constant.CACHE_PATH));
-        VCamera.setVideoCachePath(Constant.CACHE_PATH + "/");
-        Log.i(TAG,"create laughter folder");
-        // 开启log输出,ffmpeg输出到logcat
-        VCamera.setDebugMode(false);
-        // 初始化拍摄SDK，必须
-        VCamera.initialize(this);
-        //解压assert里面的文件
-        startService(new Intent(this, AssertService.class));
-    }
+
     public void addOneActivity(Activity aty){
         if (mActivities == null){
             mActivities = new WeakHashMap<>();
@@ -104,7 +82,8 @@ public class LaughterApplication extends Application {
                 .denyCacheImageMultipleSizesInMemory()
                 .discCacheFileNameGenerator(new Md5FileNameGenerator())
                 .tasksProcessingOrder(QueueProcessingType.LIFO)
-                .writeDebugLogs() // Remove for release app
+
+//                .writeDebugLogs() // Remove for release app
                 .build();
         ImageLoader.getInstance().init(config);
 
@@ -112,8 +91,6 @@ public class LaughterApplication extends Application {
 
     @Override
     public void onTerminate() {
-        TextsManager.getInstance().destroy();
-        ImagesManager.getInstance().destroy();
         DatabaseManager.getInstance().destroy();
         super.onTerminate();
     }

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import la.xiaosiwo.laught.R;
 import la.xiaosiwo.laught.callback.LaughterObjCallback;
 import la.xiaosiwo.laught.common.Constant;
-import la.xiaosiwo.laught.utils.MD5Util;
 import la.xiaosiwo.laught.utils.StringUtil;
 import la.xiaosiwo.laught.views.PatternLockView;
 import la.xiaosiwo.laught.views.Point;
@@ -26,41 +25,46 @@ public class SetPatternPwdActivity extends BaseActivity {
     private TextView mReset;
     private ArrayList<Point> first;
     private ArrayList<Point> second;
-    private LaughterObjCallback mGestureCompleteListener = new LaughterObjCallback() {
+    private LaughterObjCallback mGestureCompleteListener;
 
-        @Override
-        public void callback(Object o) {
-            PatternLockView.Result result = (PatternLockView.Result)o;
-            ArrayList<Point> list = result.getDrawPoint();
-            if(list == null || list.size() == 0){
+    {
+        mGestureCompleteListener = new LaughterObjCallback() {
 
-                return;
-            }else if((list.size() > 0 && list.size() < 4) && first == null){
-                toast(getString(R.string.pwd_weak));
-                return;
-            }else if(first == null){
-                first = list;
-                mHintTv.setText(getString(R.string.draw_gesture_pwd_again));
-                return;
-            }else if(first != null){
-                second = list;
-                boolean isSame = StringUtil.isSamePattern(first,second);
-                if(!isSame){
-                    toast(getString(R.string.diff_pwd));
-                    second = null;
-                }else{
-                    toast(getString(R.string.pwd_set_suc));
-                    if(mShared != null){
-                        String pwd = StringUtil.getGestureFromPoints(second);
-                        first = null;
+            @Override
+            public void callback(Object o) {
+                PatternLockView.Result result = (PatternLockView.Result) o;
+                ArrayList<Point> list = result.getDrawPoint();
+                if (list == null || list.size() == 0) {
+
+                    return;
+                } else if ((list.size() > 0 && list.size() < 4) && first == null) {
+                    toast(getString(R.string.pwd_weak));
+                    return;
+                } else if (first == null) {
+                    first = list;
+                    mHintTv.setText(getString(R.string.draw_gesture_pwd_again));
+                    return;
+                } else if (first != null) {
+                    second = list;
+                    boolean isSame = StringUtil.isSamePattern(first, second);
+                    if (!isSame) {
+                        toast(getString(R.string.diff_pwd));
                         second = null;
-                        mShared.edit().putString(Constant.GESTURE_PWD, pwd).commit();
+                    } else {
+                        toast(getString(R.string.pwd_set_suc));
+                        if (mShared != null) {
+                            String pwd = StringUtil.getGestureFromPoints(second);
+                            first = null;
+                            second = null;
+                            mShared.edit().putString(Constant.GESTURE_PWD, pwd).commit();
+                        }
+                        finish();
                     }
-                    finish();
                 }
             }
-        }
-    };
+        };
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Window;
 import android.widget.Toast;
@@ -18,7 +19,7 @@ import la.xiaosiwo.laught.utils.DateUtil;
 /**
  * Created by OF on 2015/6/21.
  */
-public abstract  class BaseActivity extends Activity {
+public abstract  class BaseActivity extends AppCompatActivity {
 
 
     protected SharedPreferences mShared;
