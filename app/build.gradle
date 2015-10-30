@@ -1,6 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    productFlavors {
+        xiaomi {}
+        _360 {}
+        baidu {}
+        wandoujia {}
+    }
+
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
 
@@ -44,3 +54,5 @@ dependencies {
     compile 'com.android.support:design:22.2.1'
 
 }
+
+
