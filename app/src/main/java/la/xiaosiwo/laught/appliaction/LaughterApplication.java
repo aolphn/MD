@@ -33,7 +33,7 @@ public class LaughterApplication extends Application {
         super.onCreate();
         init();
     }
-
+//test git protection
     private void init(){
         mContext = getApplicationContext();
         mActivities = new SparseArray<>();
