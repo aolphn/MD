@@ -7,6 +7,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.util.Log;
+import android.util.SparseArray;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -16,8 +17,6 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import org.litepal.LitePalApplication;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.WeakHashMap;
 
 import la.xiaosiwo.laught.common.Constant;
 import la.xiaosiwo.laught.manager.DatabaseManager;
@@ -28,7 +27,7 @@ public class LaughterApplication extends Application {
 
     private static Context mContext;
     private String TAG = "LaughterApplication";
-    private WeakHashMap<String,Activity> mActivities;
+    private SparseArray<Activity> mActivities;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -37,7 +36,7 @@ public class LaughterApplication extends Application {
 
     private void init(){
         mContext = getApplicationContext();
-        mActivities = new WeakHashMap<>();
+        mActivities = new SparseArray<>();
         Constant.SDCARD_ROOT_PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
         initImageLoader();
         LitePalApplication.initialize(this);
@@ -52,20 +51,19 @@ public class LaughterApplication extends Application {
 
     public void addOneActivity(Activity aty){
         if (mActivities == null){
-            mActivities = new WeakHashMap<>();
+            mActivities = new SparseArray<>();
         }
-        mActivities.put(aty.getLocalClassName(), aty);
+        mActivities.put(aty.getLocalClassName().hashCode(), aty);
     }
     public void removeOneActivity(Activity aty){
         if (mActivities != null){
-            mActivities.remove(aty.getLocalClassName());
+            mActivities.remove(aty.getLocalClassName().hashCode());
         }
     }
     public ArrayList<Activity> getAppActivities(){
-        Iterator<String> iterator = mActivities.keySet().iterator();
         ArrayList<Activity> list = new ArrayList<>();
-        while (iterator.hasNext()){
-            list.add(mActivities.get(iterator.next()));
+        for (int i = 0;i < mActivities.size();i++){
+            list.add(mActivities.get(mActivities.keyAt(i)));
         }
         return  list;
     }
