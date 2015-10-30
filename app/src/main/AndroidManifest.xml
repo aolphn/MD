@@ -52,14 +52,15 @@
             android:name=".activities.SetPatternPwdActivity" />
         <activity
             android:name=".activities.UnlockActivity" />
+
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}" />
     </application>
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
         android:targetPackage="la.xiaosiwo.laught"
         android:label="This is my Test case"/>
 
-    <meta-data
-        android:name="UMENG_CHANNEL"
-        android:value="${UMENG_CHANNEL_VALUE}" />
 
 </manifest>

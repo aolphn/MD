@@ -3,7 +3,10 @@ package la.xiaosiwo.laught.appliaction;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Environment;
+import android.util.Log;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -43,7 +46,7 @@ public class LaughterApplication extends Application {
         }catch (Exception e){
             e.printStackTrace();
         }
-
+        Log.i(TAG,"current channel:"+getChannel());
     }
 
 
@@ -86,6 +89,17 @@ public class LaughterApplication extends Application {
 //                .writeDebugLogs() // Remove for release app
                 .build();
         ImageLoader.getInstance().init(config);
+
+    }
+
+    private String getChannel() {
+        try {
+            PackageManager pm = getPackageManager();
+            ApplicationInfo appInfo = pm.getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+            return appInfo.metaData.getString("UMENG_CHANNEL");
+        } catch (PackageManager.NameNotFoundException ignored) {
+        }
+        return "";
 
     }
 
