@@ -7,6 +7,8 @@ import android.view.Window;
 
 import com.ant.liao.GifView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import la.xiaosiwo.laught.R;
 import la.xiaosiwo.laught.utils.ImageUtil;
 import la.xiaosiwo.laught.utils.SystemUtil;
@@ -18,42 +20,44 @@ import la.xiaosiwo.laught.views.BitmapImageView;
 public class ImagePreviewActivity extends BaseActivity {
 
     private final String TAG = "ImagePreviewActivity";
-    private BitmapImageView mImageView;
-    private GifView mGifView;
+    @Bind(R.id.static_image_view)
+    BitmapImageView mImageView;
+    @Bind(R.id.dynamic_image_view)
+    GifView mGifView;
     private String mUri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.image_priview_layout);
-        mImageView = (BitmapImageView) findViewById(R.id.static_image_view);
-        mGifView = (GifView) findViewById(R.id.dynamic_image_view);
+        ButterKnife.bind(this);
         init();
     }
 
-    private void init(){
+    private void init() {
         mUri = getIntent().getStringExtra("uri");
-        Log.i(TAG,"image uri:"+mUri);
-        if(mUri == null){
+        Log.i(TAG, "image uri:" + mUri);
+        if (mUri == null) {
             toast(getString(R.string.image_can_not_display));
             return;
         }
         String absolutePath = null;
-        if(mUri.startsWith("file://")){
+        if (mUri.startsWith("file://")) {
             absolutePath = mUri.substring(7);
-        }else if(mUri.startsWith("/")){
+        } else if (mUri.startsWith("/")) {
             absolutePath = mUri;
-        }else{
+        } else {
             toast(getString(R.string.image_can_not_display));
             return;
         }
-        if(mUri.endsWith(".gif")){
+        if (mUri.endsWith(".gif")) {
             mGifView.setVisibility(View.VISIBLE);
             mImageView.setVisibility(View.GONE);
             mGifView.setGifImage(R.drawable.test_gif);
             mGifView.setGifImage(ImageUtil.getInputStreamFromLocalFile(absolutePath));
-            mGifView.setShowDimension(SystemUtil.screenWidth, SystemUtil.screenHeight/2);
-        }else{
+            mGifView.setShowDimension(SystemUtil.screenWidth, SystemUtil.screenHeight / 2);
+        } else {
             mGifView.setVisibility(View.GONE);
             mImageView.setVisibility(View.VISIBLE);
             mImageView.setImagePath(absolutePath);

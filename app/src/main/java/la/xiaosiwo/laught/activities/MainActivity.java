@@ -1,10 +1,12 @@
 package la.xiaosiwo.laught.activities;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import la.xiaosiwo.laught.R;
 
 /**
@@ -21,20 +25,25 @@ import la.xiaosiwo.laught.R;
 public class MainActivity extends BaseActivity {
 
     private final String TAG = MainActivity.class.getSimpleName();
-    Toolbar toolbar;
-    CollapsingToolbarLayout collapsingToolbarLayout;
-
-    DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
-
-    CoordinatorLayout rootLayout;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.collapsingToolbarLayout)
+    CollapsingToolbarLayout collapsingToolbarLayout;
+    @Bind(R.id.fabBtn)
     FloatingActionButton fabBtn;
+    @Bind(R.id.rootLayout)
+    CoordinatorLayout rootLayout;
+    @Bind(R.id.navigation)
+    NavigationView navigation;
+    @Bind(R.id.drawerLayout)
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
-
+        ButterKnife.bind(this);
         initToolbar();
         initInstances();
     }
@@ -45,16 +54,10 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initInstances() {
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         drawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.hello_world, R.string.hello_world);
         drawerLayout.setDrawerListener(drawerToggle);
-
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        rootLayout = (CoordinatorLayout) findViewById(R.id.rootLayout);
-
-        fabBtn = (FloatingActionButton) findViewById(R.id.fabBtn);
         fabBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,7 +106,9 @@ public class MainActivity extends BaseActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.menu_pattern_lock) {
+            Intent intent = new Intent(MainActivity.this, SetPatternPwdActivity.class);
+            startActivity(intent);
             return true;
         }
 

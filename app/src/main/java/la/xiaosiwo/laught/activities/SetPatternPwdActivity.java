@@ -2,11 +2,12 @@ package la.xiaosiwo.laught.activities;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import la.xiaosiwo.laught.R;
 import la.xiaosiwo.laught.callback.LaughterObjCallback;
 import la.xiaosiwo.laught.common.Constant;
@@ -20,9 +21,12 @@ import la.xiaosiwo.laught.views.Point;
 public class SetPatternPwdActivity extends BaseActivity {
 
     private final String TAG = "SetPatternPwdActivity";
-    private PatternLockView mView;
-    private TextView mHintTv;
-    private TextView mReset;
+    @Bind(R.id.gesture_hint)
+    TextView mHintTv;
+    @Bind(R.id.reset_gesture)
+    TextView mReset;
+    @Bind(R.id.pattern_lock_view)
+    PatternLockView mView;
     private ArrayList<Point> first;
     private ArrayList<Point> second;
     private LaughterObjCallback mGestureCompleteListener;
@@ -68,15 +72,12 @@ public class SetPatternPwdActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.pattern_lock_layout);
+        ButterKnife.bind(this);
         init();
     }
 
-    private void init(){
-        mView = (PatternLockView) findViewById(R.id.pattern_lock_view);
-        mHintTv = (TextView) findViewById(R.id.gesture_hint);
-        mReset = (TextView) findViewById(R.id.reset_gesture);
+    private void init() {
         mReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +89,7 @@ public class SetPatternPwdActivity extends BaseActivity {
         mView.setCompleteListener(mGestureCompleteListener);
 
     }
+
     @Override
     protected void onResume() {
         super.onResume();
