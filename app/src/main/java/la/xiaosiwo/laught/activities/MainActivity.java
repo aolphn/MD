@@ -110,6 +110,9 @@ public class MainActivity extends BaseActivity {
             Intent intent = new Intent(MainActivity.this, SetPatternPwdActivity.class);
             startActivity(intent);
             return true;
+        }else if (id == R.id.auto_zoom_effect){
+            Intent intent = new Intent(MainActivity.this, AutoZoomImageActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

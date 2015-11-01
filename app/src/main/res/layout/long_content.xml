@@ -2,11 +2,16 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+<la.xiaosiwo.laught.views.RippleView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <Button
-        android:layout_width="wrap_content"
+        android:background="@color/purple_1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/user_name" />
+</la.xiaosiwo.laught.views.RippleView>
+
 
     <Button
         android:layout_width="wrap_content"

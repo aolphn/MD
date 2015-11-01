@@ -1,8 +1,23 @@
 apply plugin: 'com.android.application'
 
 android {
+
+    defaultConfig {
+        applicationId "la.xiaosiwo.laught"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+        buildConfigField "boolean", "AUTO_UPDATES", "true"
+        buildConfigField "String", "BUILDER","\"zhangkehu\""
+    }
     productFlavors {
-        xiaomi {}
+        xiaomi {
+            applicationId "la.xiaosiwo.laught"
+            buildConfigField "boolean", "AUTO_UPDATE","true"
+            buildConfigField "String", "BUILDER","xiaomi"
+        }
+        //不能直接以数字开头
         _360 {}
         baidu {}
         wandoujia {}
@@ -14,13 +29,7 @@ android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
 
-    defaultConfig {
-        applicationId "la.xiaosiwo.laught"
-        minSdkVersion 15
-        targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
-    }
+
     buildTypes {
         release {
             minifyEnabled false

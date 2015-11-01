@@ -16,7 +16,7 @@
     <string name="image_can_not_display">无法显示图片</string>
     <string name="android_studio">This app is created by android studio\</string>
     <string name="shot_picture">拍照片</string>
-    <string name="shot_video">拍视频</string>
+    <string name="auto_zoom">图片自动收缩效果</string>
     <!--图案解锁相关-->
     <string name="pattern_lock">图案解锁</string>
     <string name="draw_gesture_pwd">绘制图案密码</string>

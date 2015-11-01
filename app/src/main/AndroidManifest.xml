@@ -52,7 +52,9 @@
             android:name=".activities.SetPatternPwdActivity" />
         <activity
             android:name=".activities.UnlockActivity" />
-
+        <activity
+            android:name=".activities.AutoZoomImageActivity"
+             />
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />

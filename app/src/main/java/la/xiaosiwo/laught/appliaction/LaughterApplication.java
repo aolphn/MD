@@ -18,6 +18,7 @@ import org.litepal.LitePalApplication;
 
 import java.util.ArrayList;
 
+import la.xiaosiwo.laught.BuildConfig;
 import la.xiaosiwo.laught.common.Constant;
 import la.xiaosiwo.laught.manager.DatabaseManager;
 /**
@@ -46,6 +47,8 @@ public class LaughterApplication extends Application {
             e.printStackTrace();
         }
         Log.i(TAG,"current channel:"+getChannel());
+        Log.i(TAG,"build config,need auto update app:"+ BuildConfig.AUTO_UPDATES);
+        Log.i(TAG,"build config,builder:"+ BuildConfig.BUILDER);
     }
 
 

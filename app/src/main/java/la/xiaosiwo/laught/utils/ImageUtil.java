@@ -280,7 +280,7 @@ public class ImageUtil {
 	    Matrix matrix = new Matrix();
 	    matrix.postScale(scaleWidth, scaleHeight);
 	    return Bitmap.createBitmap(org, 0, 0, org.getWidth(), org.getHeight(),
-	            matrix, true);
+				matrix, true);
 	}
 	
 	/**
@@ -498,4 +498,12 @@ public class ImageUtil {
                 bitmap.getWidth(), bitmap.getHeight(), matrix, true);  
         return resizedBitmap;  
     }
+
+
+	public static Bitmap zoomBitmap(Bitmap bitmap,float scaleWFactor,float scaleHFactor) {
+		Matrix matrix = new Matrix();
+		matrix.postScale(scaleWFactor,scaleHFactor); //长和宽放大缩小的比例
+		Bitmap resizeBmp = Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true);
+		return resizeBmp;
+	}
 }
