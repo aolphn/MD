@@ -10,6 +10,7 @@
     <string name="version_theme">1.0.0</string>
     <string name="image_content_description"></string>
     <string name="user_name">用户名</string>
+    <string name="about_app">About Material Design</string>
     <string name="password">密码</string>
 
     <string name="hello_world">Hello world!</string>
@@ -31,7 +32,6 @@
     <string name="special_style">特效</string>
 
     <string name="nothing">There is nothing else</string>
-
 
 
     <string name="title_activity_image_priview">ImagePriviewActivity</string>

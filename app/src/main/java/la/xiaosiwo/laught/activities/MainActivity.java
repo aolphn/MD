@@ -14,9 +14,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import la.xiaosiwo.laught.R;
 
 /**
@@ -38,6 +40,9 @@ public class MainActivity extends BaseActivity {
     NavigationView navigation;
     @Bind(R.id.drawerLayout)
     DrawerLayout drawerLayout;
+    Button mAboutApp;
+    @Bind(R.id.about_app)
+    Button aboutApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,11 @@ public class MainActivity extends BaseActivity {
         initInstances();
     }
 
+    @OnClick(R.id.about_app)
+    public void onClick(){
+        Intent intent = new Intent(this,AboutAppActivity.class);
+        startActivity(intent);
+    }
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -110,7 +120,7 @@ public class MainActivity extends BaseActivity {
             Intent intent = new Intent(MainActivity.this, SetPatternPwdActivity.class);
             startActivity(intent);
             return true;
-        }else if (id == R.id.auto_zoom_effect){
+        } else if (id == R.id.auto_zoom_effect) {
             Intent intent = new Intent(MainActivity.this, AutoZoomImageActivity.class);
             startActivity(intent);
         }

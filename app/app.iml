@@ -113,19 +113,16 @@
     <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="design-22.2.1" level="project" />
-    <orderEntry type="library" exported="" name="butterknife-7.0.0" level="project" />
     <orderEntry type="library" exported="" name="GifView" level="project" />
-    <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-22.2.1" level="project" />
-    <orderEntry type="library" exported="" name="android-junit-report-1.5.8" level="project" />
-    <orderEntry type="library" exported="" name="universal-image-loader-1.9.1-with-sources" level="project" />
-    <orderEntry type="library" exported="" name="recorderlibrary" level="project" />
+    <orderEntry type="library" exported="" name="butterknife-7.0.0" level="project" />
     <orderEntry type="library" exported="" name="RecyclerView" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.2.1" level="project" />
     <orderEntry type="library" exported="" name="EventBus2.4" level="project" />
     <orderEntry type="library" exported="" name="universal-image-loader-1.9.4" level="project" />
-    <orderEntry type="library" exported="" name="robotium-solo-5.2.1" level="project" />
+    <orderEntry type="library" exported="" name="android-junit-report-1.5.8" level="project" />
+    <orderEntry type="library" exported="" name="support-annotations-22.2.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.2.1" level="project" />
+    <orderEntry type="library" exported="" name="recorderlibrary" level="project" />
     <orderEntry type="library" exported="" name="litepal-1.2.1" level="project" />
   </component>
 </module>

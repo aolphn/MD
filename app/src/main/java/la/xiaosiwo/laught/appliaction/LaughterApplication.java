@@ -48,7 +48,6 @@ public class LaughterApplication extends Application {
         }
         Log.i(TAG,"current channel:"+getChannel());
         Log.i(TAG,"build config,need auto update app:"+ BuildConfig.AUTO_UPDATES);
-        Log.i(TAG,"build config,builder:"+ BuildConfig.BUILDER);
     }
 
 
