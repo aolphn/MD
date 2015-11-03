@@ -23,9 +23,10 @@
                 android:layout_marginBottom="5dp" />
 
             <Button
+                android:id="@+id/component_preview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/user_name"
+                android:text="@string/component_preview"
                 android:background="#2fd794"
                 android:layout_marginBottom="5dp" />
 

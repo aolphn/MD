@@ -43,6 +43,8 @@ public class MainActivity extends BaseActivity {
     Button mAboutApp;
     @Bind(R.id.about_app)
     Button aboutApp;
+    @Bind(R.id.component_preview)
+    Button mComponentPreview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,36 +55,37 @@ public class MainActivity extends BaseActivity {
         initInstances();
     }
 
-    @OnClick(R.id.about_app)
-    public void onClick(){
-        Intent intent = new Intent(this,AboutAppActivity.class);
-        startActivity(intent);
-    }
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
+    @OnClick({R.id.about_app})
+    public void aboutApp() {
+        Intent intent = new Intent(this, AboutAppActivity.class);
+        startActivity(intent);
+    }
+    @OnClick({R.id.component_preview})
+    public void previewComponent() {
+        Intent intent = new Intent(this, ComponentPreviewActivity.class);
+        startActivity(intent);
+    }
+    @OnClick(R.id.fabBtn)
+    public void clickFabBtn(){
+        Snackbar.make(rootLayout, "Hello. I am Snackbar!", Snackbar.LENGTH_SHORT)
+                .setAction("Undo", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                })
+                .show();
+    }
     private void initInstances() {
         drawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.hello_world, R.string.hello_world);
         drawerLayout.setDrawerListener(drawerToggle);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        fabBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(rootLayout, "Hello. I am Snackbar!", Snackbar.LENGTH_SHORT)
-                        .setAction("Undo", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                            }
-                        })
-                        .show();
-            }
-        });
-
-        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout);
         collapsingToolbarLayout.setTitle(getString(R.string.app_name));
     }
 

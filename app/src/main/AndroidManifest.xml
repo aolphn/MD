@@ -65,6 +65,7 @@
             android:value="${UMENG_CHANNEL_VALUE}" />
 
         <activity android:name=".activities.AboutAppActivity"></activity>
+        <activity android:name=".activities.ComponentPreviewActivity"></activity>
     </application>
 
 </manifest>

@@ -44,14 +44,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    signingConfigs {
-        release {
-            storeFile file('F:\\development\\OF_KeyStore.jks')
-            storePassword 'studio'
-            keyAlias 'OF'
-            keyPassword 'android_studio'
-        }
-    }
+//    signingConfigs {
+//        release {
+//            storeFile file('F:\\development\\OF_KeyStore.jks')
+//            storePassword 'studio'
+//            keyAlias 'OF'
+//            keyPassword 'android_studio'
+//        }
+//    }
 }
 
 dependencies {
@@ -66,6 +66,7 @@ dependencies {
     compile files('src/main/libs/RecyclerView.jar')
     compile files('src/main/libs/universal-image-loader-1.9.4.jar')
     compile 'com.android.support:design:22.2.1'
+    compile files('src/main/libs/robotium-solo-5.2.1.jar')
 }
 
 
