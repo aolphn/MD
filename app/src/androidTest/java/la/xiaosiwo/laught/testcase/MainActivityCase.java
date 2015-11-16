@@ -5,6 +5,7 @@ import android.test.ActivityInstrumentationTestCase2;
 import com.robotium.solo.Solo;
 
 import la.xiaosiwo.laught.R;
+import la.xiaosiwo.laught.activities.MainActivity;
 
 /**
  * Created by OF on 201-07-01 22:14.
