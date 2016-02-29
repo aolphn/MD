@@ -25,7 +25,7 @@
             android:icon="@drawable/ic_action_location_found_dark"
             android:title="Akey-005"/>
         <item
-            android:id="@+id/navItem"
+            android:id="@+id/navItem6"
             android:icon="@drawable/ic_action_location_found_dark"
             android:title="Akey-006"/>
     </group>

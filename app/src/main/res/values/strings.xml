@@ -10,13 +10,15 @@
     <string name="version_theme">1.0.0</string>
     <string name="image_content_description"></string>
     <string name="user_name">用户名</string>
+    <string name="RxJava">RxJava</string>
+    <string name="about_app">About Material Design</string>
     <string name="password">密码</string>
-
+    <string name="event_bus_mem_leak_test">EventBus内存泄漏测试</string>
     <string name="hello_world">Hello world!</string>
     <string name="image_can_not_display">无法显示图片</string>
     <string name="android_studio">This app is created by android studio\</string>
     <string name="shot_picture">拍照片</string>
-    <string name="shot_video">拍视频</string>
+    <string name="auto_zoom">图片自动收缩效果</string>
     <!--图案解锁相关-->
     <string name="pattern_lock">图案解锁</string>
     <string name="draw_gesture_pwd">绘制图案密码</string>
@@ -33,6 +35,8 @@
     <string name="nothing">There is nothing else</string>
 
 
-
     <string name="title_activity_image_priview">ImagePriviewActivity</string>
+    <string name="component_preview">Component Preview</string>
+    <string name="title_activity_event_bus_mem_leak">测试EventBus内存泄漏</string>
+    <string name="title_activity_rxjava">RxJava探索之旅</string>
 </resources>

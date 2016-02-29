@@ -32,6 +32,6 @@
         </list>
     -->
     <list>
-        <mapping class="la.xiaosiwo.laught.models.TextLaughterItem"></mapping>
+        <mapping class="me.materialdesign.models.TextLaughterItem"></mapping>
     </list>
 </litepal>

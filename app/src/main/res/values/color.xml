@@ -17,6 +17,7 @@
     <color name="green">#0ff0ff</color>
     <color name="lightgray">#c0c0c0ff</color>
     <color name="white">#ffffffff</color>
+    <color name="rippelColor">#FFFFFF</color>
     <color name="yellow">#ffFF33ff</color>
     <color name="blue">#ff0f81d9</color>
     <color name="gray">#ff666666</color>

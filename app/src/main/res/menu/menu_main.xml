@@ -1,10 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/menu_image"
+        android:id="@+id/auto_zoom_effect"
         android:icon="@drawable/white_frame_black_content_rect"
         android:orderInCategory="1"
-        android:title="@string/shot_video"/>
+        android:title="@string/auto_zoom"/>
     <item
         android:id="@+id/menu_video"
         android:icon="@drawable/white_frame_black_content_rect"
