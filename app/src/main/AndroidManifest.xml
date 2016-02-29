@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="la.xiaosiwo.laught"
+    package="me.materialdesign"
     android:versionCode="3"
-    android:versionName="1.1.1.150719">
+    android:versionName="1.1.1.150719" >
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="19"></uses-sdk>
+        android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -31,7 +31,7 @@
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
         android:label="This is my Test case"
-        android:targetPackage="la.xiaosiwo.laught" />
+        android:targetPackage="me.materialdesign" />
 
     <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
@@ -40,7 +40,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme.WithoutActionBar">
+        android:theme="@style/AppTheme.WithoutActionBar" >
         <uses-library android:name="android.test.runner" />
 
         <activity
@@ -49,7 +49,7 @@
         <activity
             android:name=".activities.MainActivity"
             android:clearTaskOnLaunch="true"
-            android:configChanges="orientation">
+            android:configChanges="orientation" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,12 +60,21 @@
         <activity android:name=".activities.UnlockActivity" />
         <activity android:name=".activities.AutoZoomImageActivity" />
 
-        <meta-data
+        <!--<meta-data
             android:name="UMENG_CHANNEL"
-            android:value="${UMENG_CHANNEL_VALUE}" />
+            android:value="${UMENG_CHANNEL_VALUE}" />-->
 
-        <activity android:name=".activities.AboutAppActivity"></activity>
-        <activity android:name=".activities.ComponentPreviewActivity"></activity>
+        <activity android:name=".activities.AboutAppActivity" />
+        <activity android:name=".activities.ComponentPreviewActivity" />
+        <activity
+            android:name=".activities.EventBusMemLeakActivity"
+            android:label="@string/title_activity_event_bus_mem_leak"
+            android:theme="@style/AppTheme.WithoutActionBar" />
+        <activity
+            android:name=".activities.RxJavaActivity"
+            android:label="@string/title_activity_rxjava"
+            android:theme="@style/AppTheme.WithoutActionBar" >
+        </activity>
     </application>
 
 </manifest>

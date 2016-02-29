@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <la.xiaosiwo.laught.views.RippleView
+    <me.materialdesign.views.RippleView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -31,16 +31,18 @@
                 android:layout_marginBottom="5dp" />
 
             <Button
+                android:id="@+id/event_bus_mem_leak_test_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/user_name"
+                android:text="@string/event_bus_mem_leak_test"
                 android:background="#9b5cc6"
                 android:layout_marginBottom="5dp" />
 
             <Button
+                android:id="@+id/rxjava"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/user_name"
+                android:text="@string/RxJava"
                 android:background="#dd8a8a"
                 android:layout_marginBottom="5dp" />
 
@@ -150,7 +152,7 @@
                 android:background="#056005" />
         </LinearLayout>
 
-    </la.xiaosiwo.laught.views.RippleView>
+    </me.materialdesign.views.RippleView>
 
 
 </merge>

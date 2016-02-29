@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<la.xiaosiwo.laught.views.RippleView xmlns:android="http://schemas.android.com/apk/res/android"
+<me.materialdesign.views.RippleView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="la.xiaosiwo.laught.activities.AboutAppActivity">
+    tools:context="me.materialdesign.activities.AboutAppActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,4 +61,4 @@
 
         </LinearLayout>
     </LinearLayout>
-</la.xiaosiwo.laught.views.RippleView>
+</me.materialdesign.views.RippleView>

@@ -25,7 +25,7 @@
         android:layout_marginTop="5dp"
         android:textColor="@color/pure_white"
         android:id="@+id/reset_gesture" />
-    <la.xiaosiwo.laught.views.PatternLockView
+    <me.materialdesign.views.PatternLockView
         android:layout_alignBottom="@id/reset_gesture"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
