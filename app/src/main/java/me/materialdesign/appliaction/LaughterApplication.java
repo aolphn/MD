@@ -110,4 +110,13 @@ public class LaughterApplication extends Application {
         DatabaseManager.getInstance().destroy();
         super.onTerminate();
     }
+
+
+    private void inject(String libPath){
+        try {
+            Class.forName("dalvik.system.BaseClassLoader");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

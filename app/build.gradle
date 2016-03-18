@@ -6,7 +6,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
         buildConfigField "boolean", "AUTO_UPDATES", "true"
         buildConfigField "String", "CHANNEL", "\"OF-Debug-version\""
     }
@@ -35,6 +35,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
     //以前的，不知道用处
 //    signingConfigs {
 //        release {
