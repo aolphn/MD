@@ -13,7 +13,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yixia.weibo.sdk.util.StringUtils;
 
 import de.greenrobot.event.EventBus;
-import me.materialdesign.appliaction.LaughterApplication;
+import me.materialdesign.appliaction.MDApplication;
 import me.materialdesign.common.Constant;
 import me.materialdesign.events.BaseEvent;
 import me.materialdesign.utils.DateUtil;
@@ -29,7 +29,7 @@ public abstract  class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((LaughterApplication)getApplication()).addOneActivity(this);
+        ((MDApplication)getApplication()).addOneActivity(this);
         mShared = getSharedPreferences(Constant.SHARED_PROFILE, Activity.MODE_PRIVATE);
         Log.i(this.getLocalClassName(), ":onCreate at:" + DateUtil.getCurDateStr());
         EventBus.getDefault().register(this);
@@ -60,7 +60,7 @@ public abstract  class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        ((LaughterApplication)getApplication()).removeOneActivity(this);
+        ((MDApplication)getApplication()).removeOneActivity(this);
         super.onDestroy();
         Log.i(this.getLocalClassName(), ":onDestroy at:" + DateUtil.getCurDateStr());
         EventBus.getDefault().unregister(this);

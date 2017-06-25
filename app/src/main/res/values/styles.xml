@@ -15,4 +15,13 @@
     <style name="AppTheme.WithoutActionBar.AppBarOverlay"
         parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.WithoutActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <declare-styleable name="IndicatorView" >
+        //总页数
+        <attr name="total_page_count" format="integer"></attr>
+        //小点点选中的颜色
+        <attr name="focus_color" format="color"></attr>
+        //小点点未选中的颜色
+        <attr name="un_focus_color" format="color"></attr>
+    </declare-styleable>
 </resources>

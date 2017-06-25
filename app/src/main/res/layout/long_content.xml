@@ -47,10 +47,11 @@
                 android:layout_marginBottom="5dp" />
 
             <Button
+                android:id="@+id/btn_hook"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/user_name"
-                android:background="#260a0a"
+                android:text="Hook Activity launch Test"
+                android:background="#ff0a0a"
                 android:layout_marginBottom="5dp" />
 
             <Button

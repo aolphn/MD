@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import me.materialdesign.R;
-import me.materialdesign.callback.LaughterObjCallback;
+import me.materialdesign.callback.MDObjCallback;
 import me.materialdesign.common.Constant;
 import me.materialdesign.utils.StringUtil;
 import me.materialdesign.views.PatternLockView;
@@ -29,10 +29,10 @@ public class SetPatternPwdActivity extends BaseActivity {
     PatternLockView mView;
     private ArrayList<Point> first;
     private ArrayList<Point> second;
-    private LaughterObjCallback mGestureCompleteListener;
+    private MDObjCallback mGestureCompleteListener;
 
     {
-        mGestureCompleteListener = new LaughterObjCallback() {
+        mGestureCompleteListener = new MDObjCallback() {
 
             @Override
             public void callback(Object o) {

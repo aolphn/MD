@@ -49,7 +49,8 @@ public class MainActivity extends BaseActivity {
     Button eventBusMemLeakTestBtn;
     @Bind(R.id.rxjava)
     Button mRxjavaBtn;
-
+    @Bind(R.id.btn_hook)
+    Button mHookBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,7 +144,7 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @OnClick ({R.id.rxjava,R.id.event_bus_mem_leak_test_btn})
+    @OnClick ({R.id.rxjava,R.id.event_bus_mem_leak_test_btn,R.id.btn_hook})
     public void btnClickEvent(View v){
         Intent intent = null;
         switch (v.getId()){
@@ -153,6 +154,10 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.rxjava:
                 intent = new Intent(this, RxJavaActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_hook:
+                intent = new Intent(this, ProxyOtherActivity.class);
                 startActivity(intent);
                 break;
         }

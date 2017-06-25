@@ -1,33 +1,20 @@
 apply plugin: 'com.android.application'
-
 android {
     defaultConfig {
         applicationId 'me.materialdesign'
-        minSdkVersion 15
-        targetSdkVersion 22
+        minSdkVersion 14
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0.1"
         buildConfigField "boolean", "AUTO_UPDATES", "true"
         buildConfigField "String", "CHANNEL", "\"OF-Debug-version\""
+        javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true;
     }
-//    productFlavors {
-//        xiaomi {
-//
-//            applicationId "me.laught.xiaomi"
-//            buildConfigField "boolean", "AUTO_UPDATE", "true"
-//            buildConfigField "String", "CHANNEL", "\"xiaomi\""
-//            versionCode 1
-//            versionName '1.0'
-//        }
-//        //不能直接以数字开头
-//
-//    }
-//
-//    productFlavors.all {
-//        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
-//    }
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
 //2016年2月25日 15:30:27
     buildTypes {
         release {
@@ -38,36 +25,32 @@ android {
     }
 
 
-    //以前的，不知道用处
-//    signingConfigs {
-//        release {
-//            storeFile file('F:\\development\\OF_KeyStore.jks')
-//            storePassword 'studio'
-//            keyAlias 'OF'
-//            keyPassword 'android_studio'
-//        }
-//    }
+
     productFlavors {
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.android.support:appcompat-v7:25+'
     compile files('src/main/libs/GifView.jar')
     compile files('src/main/libs/butterknife-7.0.0.jar')
     compile files('src/main/libs/android-junit-report-1.5.8.jar')
     compile files('src/main/libs/litepal-1.2.1.jar')
     compile files('src/main/libs/recorderlibrary.jar')
-    compile files('src/main/libs/RecyclerView.jar')
     compile files('src/main/libs/universal-image-loader-1.9.4.jar')
-    compile 'com.android.support:design:22.2.1'
+    compile 'com.android.support:design:25+'
     compile files('src/main/libs/robotium-solo-5.2.1.jar')
     compile files('src/main/libs/eventbus-2.4.0.jar')
-    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
     // Because RxAndroid releases are few and far between, it is recommended you also
 
     // explicitly depend on RxJava's latest version for bug fixes and new features.
-    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.4'
 }
 

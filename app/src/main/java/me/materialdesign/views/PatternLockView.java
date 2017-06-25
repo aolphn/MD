@@ -12,7 +12,7 @@ import android.view.View;
 import java.util.ArrayList;
 
 import me.materialdesign.R;
-import me.materialdesign.callback.LaughterObjCallback;
+import me.materialdesign.callback.MDObjCallback;
 
 /**
  * Created by OF on 14:43.
@@ -27,7 +27,7 @@ public class PatternLockView extends View {
     private Paint errorPaint;
     float mouseX,mouseY;
     private boolean  isDraw = false;
-    private LaughterObjCallback mCompleteListener;
+    private MDObjCallback mCompleteListener;
     private ArrayList<Point> pointsList = new ArrayList<>();
     public PatternLockView(Context context) {
         super(context);
@@ -219,7 +219,7 @@ public class PatternLockView extends View {
      *
      * @param l
      */
-    public void setCompleteListener(LaughterObjCallback l){
+    public void setCompleteListener(MDObjCallback l){
         mCompleteListener = l;
     }
 

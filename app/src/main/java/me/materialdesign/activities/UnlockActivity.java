@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import me.materialdesign.R;
-import me.materialdesign.callback.LaughterObjCallback;
+import me.materialdesign.callback.MDObjCallback;
 import me.materialdesign.common.Constant;
 import me.materialdesign.utils.StringUtil;
 import me.materialdesign.views.PatternLockView;
@@ -33,7 +33,7 @@ public class UnlockActivity extends BaseActivity {
     PatternLockView mView;
     private String mUnlockFrom;
     private SharedPreferences mShared;
-    private LaughterObjCallback mGestureCompleteListener = new LaughterObjCallback() {
+    private MDObjCallback mGestureCompleteListener = new MDObjCallback() {
 
         @Override
         public void callback(Object o) {

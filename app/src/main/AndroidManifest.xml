@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="25" />
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -36,7 +36,7 @@
     <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
-        android:name=".appliaction.LaughterApplication"
+        android:name=".appliaction.MDApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -46,6 +46,8 @@
         <activity
             android:name=".activities.ImagePreviewActivity"
             android:label="@string/title_activity_image_priview" />
+
+<activity android:name=".activities.ProxyActivity"/>
         <activity
             android:name=".activities.MainActivity"
             android:clearTaskOnLaunch="true"
